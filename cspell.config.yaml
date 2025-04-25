@@ -3,7 +3,10 @@ ignorePaths: []
 dictionaryDefinitions: []
 dictionaries: []
 words:
+  - importantimport
+  - masknet
   - moeru
   - pkgroll
+  - sonarjs
 ignoreWords: []
 import: []

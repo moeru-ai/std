@@ -13,7 +13,10 @@
   },
   "bugs": "https://github.com/moeru-ai/std/issues",
   "sideEffects": false,
-  "exports": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./trampoline": "./src/trampoline/index.ts"
+  },
   "files": [
     "dist"
   ],
@@ -22,6 +25,10 @@
       ".": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
+      },
+      "./trampoline": {
+        "types": "./dist/trampoline/index.d.ts",
+        "default": "./dist/trampoline/index.js"
       },
       "./package.json": "./package.json"
     },
