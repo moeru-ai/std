@@ -15,6 +15,7 @@
   "sideEffects": false,
   "exports": {
     ".": "./src/index.ts",
+    "./sleep": "./src/sleep/index.ts",
     "./trampoline": "./src/trampoline/index.ts"
   },
   "files": [
@@ -25,6 +26,10 @@
       ".": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
+      },
+      "./sleep": {
+        "types": "./dist/sleep/index.d.ts",
+        "default": "./dist/sleep/index.js"
       },
       "./trampoline": {
         "types": "./dist/trampoline/index.d.ts",
