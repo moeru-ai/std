@@ -36,6 +36,7 @@
     "types": "./dist/index.d.ts"
   },
   "scripts": {
-    "build": "pkgroll"
+    "build": "pkgroll",
+    "prebuild": "tsx scripts/update-exports.ts"
   }
 }
