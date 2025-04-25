@@ -15,6 +15,8 @@
   "sideEffects": false,
   "exports": {
     ".": "./src/index.ts",
+    "./base64": "./src/base64/index.ts",
+    "./merge": "./src/merge/index.ts",
     "./sleep": "./src/sleep/index.ts",
     "./trampoline": "./src/trampoline/index.ts"
   },
@@ -26,6 +28,14 @@
       ".": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
+      },
+      "./base64": {
+        "types": "./dist/base64/index.d.ts",
+        "default": "./dist/base64/index.js"
+      },
+      "./merge": {
+        "types": "./dist/merge/index.d.ts",
+        "default": "./dist/merge/index.js"
       },
       "./sleep": {
         "types": "./dist/sleep/index.d.ts",
