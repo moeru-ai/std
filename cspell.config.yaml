@@ -9,7 +9,9 @@ words:
   - lumeland
   - masknet
   - moeru
+  - nolebase
   - pkgroll
   - sonarjs
+  - vitepress
 ignoreWords: []
 import: []
