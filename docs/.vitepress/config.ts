@@ -5,6 +5,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   description: 'Standard for Moeru AI.',
   themeConfig: {
+    logo: 'https://github.com/moeru-ai.png',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { link: '/', text: 'Home' },
@@ -13,6 +14,7 @@ export default defineConfig({
 
     sidebar: calculateSidebar([
       'lib',
+      'node',
       // 'Notes',
       // { folderName: 'Articles', separate: true },
     ]),

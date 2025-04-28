@@ -18,4 +18,5 @@ features:
   - title: TypeScript Library
     link: /lib
   - title: Node.js Project Architecture
+    link: /node
 ---
