@@ -1,3 +1,7 @@
+---
+title: TypeScript Library
+---
+
 # @moeru-ai/std
 
 Standard TypeScript Library for Moeru AI.

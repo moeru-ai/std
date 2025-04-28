@@ -1,3 +1,7 @@
+---
+title: bundler
+---
+
 # Bundler
 
 There are many bundlers out there, so just pick the one that meets your needs.
