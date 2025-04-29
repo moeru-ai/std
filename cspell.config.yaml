@@ -13,5 +13,6 @@ words:
   - pkgroll
   - sonarjs
   - vitepress
+  - xsai
 ignoreWords: []
 import: []
