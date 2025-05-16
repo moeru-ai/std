@@ -4,6 +4,7 @@
   "private": true,
   "packageManager": "pnpm@10.9.0",
   "scripts": {
+    "bump": "bumpp",
     "dev": "pnpm -rF @moeru/std-docs dev"
   },
   "devDependencies": {
@@ -11,6 +12,7 @@
     "@importantimport/eslint-config": "1.0.0-beta.2",
     "@importantimport/tsconfig": "1.0.0-beta.2",
     "@types/node": "^22.15.2",
+    "bumpp": "^10.1.1",
     "eslint": "^9.24.0",
     "jiti": "^2.4.2",
     "pkgroll": "^2.12.2",
