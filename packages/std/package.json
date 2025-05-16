@@ -15,8 +15,10 @@
   "sideEffects": false,
   "exports": {
     ".": "./src/index.ts",
+    "./async-iterator": "./src/async-iterator/index.ts",
     "./base64": "./src/base64/index.ts",
     "./merge": "./src/merge/index.ts",
+    "./set-interval": "./src/set-interval/index.ts",
     "./sleep": "./src/sleep/index.ts",
     "./trampoline": "./src/trampoline/index.ts"
   },
@@ -29,6 +31,10 @@
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
       },
+      "./async-iterator": {
+        "types": "./dist/async-iterator/index.d.ts",
+        "default": "./dist/async-iterator/index.js"
+      },
       "./base64": {
         "types": "./dist/base64/index.d.ts",
         "default": "./dist/base64/index.js"
@@ -36,6 +42,10 @@
       "./merge": {
         "types": "./dist/merge/index.d.ts",
         "default": "./dist/merge/index.js"
+      },
+      "./set-interval": {
+        "types": "./dist/set-interval/index.d.ts",
+        "default": "./dist/set-interval/index.js"
       },
       "./sleep": {
         "types": "./dist/sleep/index.d.ts",
