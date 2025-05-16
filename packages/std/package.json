@@ -1,7 +1,7 @@
 {
   "name": "@moeru/std",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Standard TypeScript Library for Moeru AI.",
   "author": "Moeru AI",
   "license": "MIT",

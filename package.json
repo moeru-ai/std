@@ -1,6 +1,7 @@
 {
   "name": "@moeru/std-workspace",
   "type": "module",
+  "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@10.9.0",
   "scripts": {

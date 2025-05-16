@@ -1,6 +1,7 @@
 {
   "name": "@moeru/std-docs",
   "type": "module",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "vitepress build",
