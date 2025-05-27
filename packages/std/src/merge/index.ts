@@ -1,5 +1,5 @@
-const isPlainObject = (value: unknown): value is Record<string, unknown> =>
-  Object.getPrototypeOf(value) === Object.prototype
+const isPlainObject = (value?: unknown): value is Record<string, unknown> =>
+  value != null && Object.getPrototypeOf(value) === Object.prototype
 
 export const merge = <T1 extends Record<string, unknown>, T2 extends Partial<T1> = Partial<T1>>(
   defaults: T1,
