@@ -6,7 +6,8 @@
   "packageManager": "pnpm@10.9.0",
   "scripts": {
     "bump": "bumpp",
-    "dev": "pnpm -rF @moeru/std-docs dev"
+    "dev": "pnpm -rF @moeru/std-docs dev",
+    "lint": "eslint --flags unstable_native_nodejs_ts_config --cache ."
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.12.0",
