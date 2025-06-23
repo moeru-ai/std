@@ -1,7 +1,7 @@
 const isPlainObject = (value?: unknown): value is Record<string, unknown> =>
   value != null && Object.getPrototypeOf(value) === Object.prototype
 
-export const merge = <T1 extends Record<string, unknown>, T2 extends Partial<T1> = Partial<T1>>(
+export const merge = <T1 extends object, T2 extends Partial<T1> = Partial<T1>>(
   defaults: T1,
   user?: T2,
 ): T1 => {
@@ -14,9 +14,9 @@ export const merge = <T1 extends Record<string, unknown>, T2 extends Partial<T1>
     if (value === undefined)
       continue
 
-    if (isPlainObject(merged[key]) && isPlainObject(value)) {
+    if (isPlainObject(merged[key as keyof T1]) && isPlainObject(value)) {
       // @ts-expect-error: Type 'T' is generic and can only be indexed for reading.
-      merged[key] = merge(merged[key], value)
+      merged[key] = merge(merged[key as keyof T1], value)
       continue
     }
 

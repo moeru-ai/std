@@ -1,7 +1,7 @@
 import { merge } from '../merge'
 import { sleep } from '../sleep'
 
-interface ToRetriableOptions extends Record<string, unknown> {
+interface ToRetriableOptions {
   onError: (err: unknown) => void
   retry: number
   retryDelay: number
