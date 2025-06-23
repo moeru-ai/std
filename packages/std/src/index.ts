@@ -1,6 +1,7 @@
 export * from './async-iterator'
 export * from './base64'
 export * from './merge'
+export * from './retry'
 export * from './set-interval'
 export * from './sleep'
 export * from './trampoline'
