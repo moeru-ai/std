@@ -22,7 +22,7 @@ export const toRetriable = <A, R>(func: (...args: A[]) => Promise<R>, options?: 
   let retryCount = 0
   const opts = merge(defaults, options)
 
-  return async function (args: A): Promise<R> {
+  return async (args: A): Promise<R> => {
     try {
       return await func(args)
     }
