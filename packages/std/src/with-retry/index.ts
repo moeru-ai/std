@@ -18,7 +18,7 @@ const defaults: ToRetriableOptions = {
  *
  * @returns A wrapped function with the same signature as func
  */
-export const toRetriable = <A, R>(func: (...args: A[]) => Promise<R>, options?: Partial<ToRetriableOptions>): (...args: A[]) => Promise<R> => {
+export const withRetry = <A, R>(func: (...args: A[]) => Promise<R>, options?: Partial<ToRetriableOptions>): (...args: A[]) => Promise<R> => {
   let retryCount = 0
   const opts = merge(defaults, options)
 
@@ -32,7 +32,7 @@ export const toRetriable = <A, R>(func: (...args: A[]) => Promise<R>, options?: 
       if (retryCount < opts.retry) {
         retryCount++
         await sleep(opts.retryDelay)
-        return toRetriable(func, { ...options, retry: opts.retry - retryCount })(args)
+        return withRetry(func, { ...options, retry: opts.retry - retryCount })(args)
       }
       else {
         throw err

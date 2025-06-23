@@ -20,7 +20,8 @@
     "./merge": "./src/merge/index.ts",
     "./set-interval": "./src/set-interval/index.ts",
     "./sleep": "./src/sleep/index.ts",
-    "./trampoline": "./src/trampoline/index.ts"
+    "./trampoline": "./src/trampoline/index.ts",
+    "./with-retry": "./src/with-retry/index.ts"
   },
   "files": [
     "dist"
@@ -54,6 +55,10 @@
       "./trampoline": {
         "types": "./dist/trampoline/index.d.ts",
         "default": "./dist/trampoline/index.js"
+      },
+      "./with-retry": {
+        "types": "./dist/with-retry/index.d.ts",
+        "default": "./dist/with-retry/index.js"
       },
       "./package.json": "./package.json"
     },
