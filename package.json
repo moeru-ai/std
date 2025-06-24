@@ -7,16 +7,18 @@
   "scripts": {
     "bump": "bumpp",
     "dev": "pnpm -rF @moeru/std-docs dev",
-    "lint": "eslint --flags unstable_native_nodejs_ts_config --cache ."
+    "lint": "moeru-lint --flag unstable_native_nodejs_ts_config"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.12.0",
-    "@importantimport/eslint-config": "1.0.0-beta.2",
     "@importantimport/tsconfig": "1.0.0-beta.2",
+    "@moeru/eslint-config": "workspace:^",
     "@types/node": "^22.15.2",
     "bumpp": "^10.1.1",
     "eslint": "^9.24.0",
+    "eslint-plugin-oxlint": "^1.3.0",
     "jiti": "^2.4.2",
+    "oxlint": "^1.3.0",
     "pkgroll": "^2.12.2",
     "tsx": "^4.19.3",
     "vitepress": "^2.0.0-alpha.5",
