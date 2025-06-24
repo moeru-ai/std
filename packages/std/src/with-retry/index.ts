@@ -2,14 +2,18 @@ import { merge } from '../merge'
 import { sleep } from '../sleep'
 
 interface WithRetryOptions {
-  onError: (err: unknown) => void
+  onError?: (err: unknown) => void
+  /** @default 3 */
   retry: number
+  /** @internal */
+  retryCount: number
+  /** @default 500 */
   retryDelay: number
 }
 
 const defaults: WithRetryOptions = {
-  onError: () => {},
   retry: 3,
+  retryCount: 0,
   retryDelay: 500,
 }
 
@@ -19,20 +23,18 @@ const defaults: WithRetryOptions = {
  * @returns A wrapped function with the same signature as func
  */
 export const withRetry = <A, R>(func: (...args: A[]) => Promise<R>, options?: Partial<WithRetryOptions>): (...args: A[]) => Promise<R> => {
-  let retryCount = 0
-  const opts = merge(defaults, options)
+  const { onError, retry, retryCount, retryDelay } = merge(defaults, options)
 
   return async (args: A): Promise<R> => {
     try {
       return await func(args)
     }
     catch (err) {
-      opts.onError(err)
+      onError?.(err)
 
-      if (retryCount < opts.retry) {
-        retryCount++
-        await sleep(opts.retryDelay)
-        return withRetry(func, { ...options, retry: opts.retry - retryCount })(args)
+      if (retryCount < retry) {
+        await sleep(retryDelay)
+        return withRetry(func, { onError, retry, retryCount: retryCount + 1, retryDelay })(args)
       }
       else {
         throw err
