@@ -1,13 +1,13 @@
 import { merge } from '../merge'
 import { sleep } from '../sleep'
 
-interface ToRetriableOptions {
+interface WithRetryOptions {
   onError: (err: unknown) => void
   retry: number
   retryDelay: number
 }
 
-const defaults: ToRetriableOptions = {
+const defaults: WithRetryOptions = {
   onError: () => {},
   retry: 3,
   retryDelay: 500,
@@ -18,7 +18,7 @@ const defaults: ToRetriableOptions = {
  *
  * @returns A wrapped function with the same signature as func
  */
-export const withRetry = <A, R>(func: (...args: A[]) => Promise<R>, options?: Partial<ToRetriableOptions>): (...args: A[]) => Promise<R> => {
+export const withRetry = <A, R>(func: (...args: A[]) => Promise<R>, options?: Partial<WithRetryOptions>): (...args: A[]) => Promise<R> => {
   let retryCount = 0
   const opts = merge(defaults, options)
 
