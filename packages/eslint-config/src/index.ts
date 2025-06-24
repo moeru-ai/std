@@ -21,14 +21,14 @@ export interface MoeruOptions extends AntfuOptions {
 const defaults: MoeruOptions = {
   oxlint: isPackageInScope('oxlint'),
   perfectionist: true,
-  pnpm: true,
+  // pnpm: true,
   typescript: { tsconfigPath: './tsconfig.json' },
 }
 
 export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedFlatConfigItem>[] => {
-  const options: MoeruOptions = merge(defaults, userOptions)
+  let options: MoeruOptions = merge(defaults, userOptions)
 
-  const results: Awaitable<TypedFlatConfigItem>[] = [
+  let results: Awaitable<TypedFlatConfigItem>[] = [
     deMorgan(),
     ignores(),
     ...masknet(options),
@@ -49,7 +49,7 @@ export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedF
 
 // eslint-disable-next-line ts/promise-function-async
 export const defineConfig = (userOptions: Partial<MoeruOptions> = {}, ...userConfigs: Array<Parameters<typeof antfu>[1]>): ReturnType<typeof antfu> => {
-  const options: MoeruOptions = merge(defaults, userOptions)
+  let options: MoeruOptions = merge(defaults, userOptions)
 
   return antfu(options, ...moeru(options), ...userConfigs ?? [])
 }

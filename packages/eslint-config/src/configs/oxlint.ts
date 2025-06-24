@@ -7,7 +7,7 @@ import type { MoeruOptions } from '..'
 export const oxlint = async (options: MoeruOptions['oxlint']): Promise<TypedFlatConfigItem> => {
   await ensurePackages(['eslint-plugin-oxlint'])
 
-  const oxlintPlugin = await interopDefault(import('eslint-plugin-oxlint'))
+  let oxlintPlugin = await interopDefault(import('eslint-plugin-oxlint'))
 
   return {
     ...(
