@@ -28,13 +28,13 @@ const defaults: MoeruOptions = {
   typescript: { tsconfigPath: './tsconfig.json' },
 }
 
-export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedFlatConfigItem>[] => {
+export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedFlatConfigItem[]>[] => {
   let options: MoeruOptions = merge(defaults, userOptions)
 
-  let results: Awaitable<TypedFlatConfigItem>[] = [
+  let results: Awaitable<TypedFlatConfigItem[]>[] = [
     deMorgan(),
     ignores(),
-    ...masknet(options),
+    masknet(options),
     sonarjs(),
     sortPackageJsonWithScripts(),
   ]

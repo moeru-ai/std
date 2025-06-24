@@ -26,9 +26,15 @@ importers:
       eslint:
         specifier: ^9.24.0
         version: 9.25.1(jiti@2.4.2)
+      eslint-plugin-oxlint:
+        specifier: ^1.3.0
+        version: 1.3.0
       jiti:
         specifier: ^2.4.2
         version: 2.4.2
+      oxlint:
+        specifier: ^1.3.0
+        version: 1.3.0
       pkgroll:
         specifier: ^2.12.2
         version: 2.12.2(typescript@5.8.3)
@@ -554,6 +560,46 @@ packages:
     resolution: {integrity: sha512-oGjdUXqCUNWJdZ48tFIxrPCwZnB+tKziPX/iYQJo9j9DhF6E7ez5kOYBh5JUYC+fsNCRF7hYkDFpPDqHFU7U/g==}
     peerDependencies:
       vitepress: ^1.5.0 || ^2.0.0-alpha.1
+
+  '@oxlint/darwin-arm64@1.3.0':
+    resolution: {integrity: sha512-TcCaETXYfiEfS+u/gZNND4WwEEtnJJjqg8BIC56WiCQDduYTvmmbQ0vxtqdNXlFzlvmRpZCSs7qaqXNy8/8FLA==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@oxlint/darwin-x64@1.3.0':
+    resolution: {integrity: sha512-REgq9s1ZWuh++Vi+mUPNddLTp/D+iu+T8nLd3QM1dzQoBD/SZ7wRX3Mdv8QGT/m8dknmDBQuKAP6T47ox9HRSA==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@oxlint/linux-arm64-gnu@1.3.0':
+    resolution: {integrity: sha512-QAS8AWKDcDeUe8mJaw/pF2D9+js8FbFTo75AiekZKNm9V6QAAiCkyvesmILD8RrStw9aV2D/apOD71vsfcDoGA==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxlint/linux-arm64-musl@1.3.0':
+    resolution: {integrity: sha512-rAbz0KFkk5GPdERoFO4ZUZmVkECnHXjRG0O2MeT5zY7ddlyZUjEk1cWjw+HCtWVdKkqhZJeNFMuEiRLkpzBIIw==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxlint/linux-x64-gnu@1.3.0':
+    resolution: {integrity: sha512-6uLO1WsJwCtVNGHtjXwg2TRvxQYttYJKMjSdv6RUXGWY1AI+/+yHzvu+phU/F40uNC7CFhFnqWDuPaSZ49hdAQ==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxlint/linux-x64-musl@1.3.0':
+    resolution: {integrity: sha512-+vrmJUHgtJmgIo+L9eTP04NI/OQNCOZtQo6I49qGWc9cpr+0MnIh9KMcyAOxmzVTF5g+CF1I/1bUz4pk4I3LDw==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxlint/win32-arm64@1.3.0':
+    resolution: {integrity: sha512-k+ETUVl+O3b8Rcd2PP5V3LqQ2QoN/TOX2f19XXHZEynbVLY3twLYPb3hLdXqoo7CKRq3RJdTfn1upHH48/qrZQ==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@oxlint/win32-x64@1.3.0':
+    resolution: {integrity: sha512-nWSgK0fT02TQ/BiAUCd13BaobtHySkCDcQaL+NOmhgeb0tNWjtYiktuluahaIqFcYJPWczVlbs8DU/Eqo8vsug==}
+    cpu: [x64]
+    os: [win32]
 
   '@pkgr/core@0.2.4':
     resolution: {integrity: sha512-ROFF39F6ZrnzSUEmQQZUar0Jt4xVoP9WnDRdWwF4NNcXs3xBTLgBUDoOwW141y1jP+S8nahIbdxbFC7IShw9Iw==}
@@ -2367,6 +2413,11 @@ packages:
     resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
     engines: {node: '>= 0.4'}
 
+  oxlint@1.3.0:
+    resolution: {integrity: sha512-PzAOmPxnXYpVF1q6h9pkOPH6uJ/44XrtFWJ8JcEMpoEq9HISNelD3lXhACtOAW8CArjLy/qSlu2KkyPxnXgctA==}
+    engines: {node: '>=8.*'}
+    hasBin: true
+
   p-limit@3.1.0:
     resolution: {integrity: sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ==}
     engines: {node: '>=10'}
@@ -3460,6 +3511,30 @@ snapshots:
       gray-matter: 4.0.3
       tinyglobby: 0.2.13
       vitepress: 2.0.0-alpha.5(@algolia/client-search@5.23.4)(@types/node@22.15.2)(jiti@2.4.2)(postcss@8.5.3)(search-insights@2.17.3)(tsx@4.19.3)(typescript@5.8.3)(yaml@2.8.0)
+
+  '@oxlint/darwin-arm64@1.3.0':
+    optional: true
+
+  '@oxlint/darwin-x64@1.3.0':
+    optional: true
+
+  '@oxlint/linux-arm64-gnu@1.3.0':
+    optional: true
+
+  '@oxlint/linux-arm64-musl@1.3.0':
+    optional: true
+
+  '@oxlint/linux-x64-gnu@1.3.0':
+    optional: true
+
+  '@oxlint/linux-x64-musl@1.3.0':
+    optional: true
+
+  '@oxlint/win32-arm64@1.3.0':
+    optional: true
+
+  '@oxlint/win32-x64@1.3.0':
+    optional: true
 
   '@pkgr/core@0.2.4': {}
 
@@ -5636,6 +5711,17 @@ snapshots:
       get-intrinsic: 1.3.0
       object-keys: 1.1.1
       safe-push-apply: 1.0.0
+
+  oxlint@1.3.0:
+    optionalDependencies:
+      '@oxlint/darwin-arm64': 1.3.0
+      '@oxlint/darwin-x64': 1.3.0
+      '@oxlint/linux-arm64-gnu': 1.3.0
+      '@oxlint/linux-arm64-musl': 1.3.0
+      '@oxlint/linux-x64-gnu': 1.3.0
+      '@oxlint/linux-x64-musl': 1.3.0
+      '@oxlint/win32-arm64': 1.3.0
+      '@oxlint/win32-x64': 1.3.0
 
   p-limit@3.1.0:
     dependencies:

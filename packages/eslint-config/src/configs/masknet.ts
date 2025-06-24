@@ -88,4 +88,4 @@ export const masknet = (options: MoeruOptions): TypedFlatConfigItem[] => [
     } satisfies TypedFlatConfigItem]
     : []
   ),
-] as const
+]

@@ -2,7 +2,7 @@ import type { TypedFlatConfigItem } from '@antfu/eslint-config'
 
 import preferLetPlugin from 'eslint-plugin-prefer-let'
 
-export const preferLet = (): TypedFlatConfigItem => ({
+export const preferLet = (): TypedFlatConfigItem[] => [{
   name: 'moeru/prefer-let/setup',
   plugins: {
     'prefer-let': preferLetPlugin,
@@ -12,4 +12,4 @@ export const preferLet = (): TypedFlatConfigItem => ({
     'prefer-const': 'off',
     'prefer-let/prefer-let': 2,
   },
-})
+}]

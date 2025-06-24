@@ -5,7 +5,7 @@ import type { TypedFlatConfigItem } from '@antfu/eslint-config'
  *
  * Requires `jsonc` config
  */
-export const sortPackageJsonWithScripts = (): TypedFlatConfigItem => ({
+export const sortPackageJsonWithScripts = (): TypedFlatConfigItem[] => [{
   files: ['**/package.json'],
   name: 'moeru/sort/package-json-scripts',
   rules: {
@@ -101,4 +101,4 @@ export const sortPackageJsonWithScripts = (): TypedFlatConfigItem => ({
       },
     ],
   },
-})
+}]
