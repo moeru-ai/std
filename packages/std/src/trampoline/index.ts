@@ -1,6 +1,6 @@
 export type TrampolineFn<T> = (() => Promise<TrampolineFn<T>> | TrampolineFn<T>) | Promise<T> | T
 
-export const trampoline = async <T>(fn: () => TrampolineFn<T>) => {
+export const trampoline = async <T>(fn: () => Promise<TrampolineFn<T>> | TrampolineFn<T>): Promise<T> => {
   let result = await fn()
 
   // make ts happy
