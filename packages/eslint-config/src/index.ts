@@ -16,12 +16,15 @@ import { sortPackageJsonWithScripts } from './configs/sort'
 export interface MoeruOptions extends AntfuOptions {
   oxlint: boolean | { oxlintrcPath: string }
   perfectionist: boolean
+  preferArrow: boolean
+  preferLet: boolean
 }
 
 const defaults: MoeruOptions = {
   oxlint: isPackageInScope('oxlint'),
   perfectionist: true,
-  // pnpm: true,
+  preferArrow: true,
+  preferLet: true,
   typescript: { tsconfigPath: './tsconfig.json' },
 }
 
@@ -32,14 +35,18 @@ export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedF
     deMorgan(),
     ignores(),
     ...masknet(options),
-    preferArrow(),
-    preferLet(),
     sonarjs(),
     sortPackageJsonWithScripts(),
   ]
 
   if (options.perfectionist)
     results.push(perfectionist())
+
+  if (options.preferArrow)
+    results.push(preferArrow())
+
+  if (options.preferLet)
+    results.push(preferLet())
 
   if (options.oxlint !== false)
     results.push(oxlint(options.oxlint))
