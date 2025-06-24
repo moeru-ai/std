@@ -57,11 +57,11 @@ else {
   let cache = values['no-cache'] ? '' : '--cache'
   let flag = values.flag?.map(flag => `--flag ${flag}`).join(' ') ?? ''
 
-  console.info('moeru-lint: executing oxlint\n')
+  console.info('moeru-lint: executing oxlint...\n')
   let oxlint = spawn('oxlint', [fix, fixDangerously, fixSuggestions], { stdio: 'inherit' })
 
   oxlint.on('close', () => {
-    console.info('\nmoeru-lint: executing eslint\n')
+    console.info('\nmoeru-lint: executing eslint...\n')
     spawn('eslint', [cache, flag, fix, '.'], { stdio: 'inherit' })
   })
 }
