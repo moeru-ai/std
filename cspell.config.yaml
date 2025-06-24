@@ -5,6 +5,7 @@ dictionaries: []
 words:
   - bumpp
   - denoland
+  - ependencies
   - foxts
   - importantimport
   - lume
@@ -12,6 +13,8 @@ words:
   - masknet
   - moeru
   - nolebase
+  - oxlint
+  - oxlintrc
   - pkgroll
   - scule
   - sonarjs
