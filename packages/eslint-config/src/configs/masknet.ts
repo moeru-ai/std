@@ -7,14 +7,14 @@ import type { MoeruOptions } from '..'
 
 export const masknet = (options: MoeruOptions): TypedFlatConfigItem[] => [
   {
-    name: 'importantimport/masknet/setup',
+    name: 'moeru/masknet/setup',
     plugins: {
       '@masknet': masknetPlugin,
     },
   },
   {
     files: [GLOB_TS, GLOB_TSX],
-    name: 'importantimport/masknet/rules',
+    name: 'moeru/masknet/rules',
     /**
      * @see {@link https://github.com/DimensionDev/eslint-plugin#usage}
      * @remarks "@masknet/array/no-unneeded-flat-map" => "@masknet/array-no-unneeded-flat-map"
@@ -78,7 +78,7 @@ export const masknet = (options: MoeruOptions): TypedFlatConfigItem[] => [
     ? [{
       files: [GLOB_TS, GLOB_TSX],
       ignores: [GLOB_MARKDOWN_CODE, GLOB_ASTRO_TS],
-      name: 'importantimport/masknet/rules-type-aware',
+      name: 'moeru/masknet/rules-type-aware',
       rules: {
         // most of the time we just need to use the default error
         // '@masknet/no-default-error': 'error',
