@@ -22,6 +22,9 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "moeru-lint": "./dist/bin/moeru-lint.js"
+  },
   "files": [
     "dist"
   ],
