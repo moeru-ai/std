@@ -8,7 +8,7 @@ const calculateSidebarWithDefaultOpen = (targets?: Array<string | {
   separate: boolean
 // eslint-disable-next-line sonarjs/function-return-type
 }>, base?: string) => {
-  const result = calculateSidebar(targets, base)
+  let result = calculateSidebar(targets, base)
   if (Array.isArray(result)) {
     result.forEach((item) => {
       item.collapsed = false

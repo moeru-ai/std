@@ -1,11 +1,10 @@
-/* eslint-disable @masknet/no-top-level */
 import { readdir, readFile, writeFile } from 'node:fs/promises'
 
 const entries = await readdir('./src', { withFileTypes: true })
 
 const exports: string[] = []
 
-for (const entry of entries) {
+for (let entry of entries) {
   if (entry.isDirectory())
     exports.push(entry.name)
 }

@@ -1,5 +1,5 @@
 const getTypeName = (value: unknown): string => {
-  const type = typeof value
+  let type = typeof value
 
   if (type !== 'object')
     return type
@@ -15,7 +15,7 @@ export const validateBinaryLike = (source: unknown): Uint8Array => {
   else if (source instanceof Uint8Array)
     return source
   else if (source instanceof ArrayBuffer)
-    // eslint-disable-next-line @masknet/array-prefer-from
+
     return new Uint8Array(source)
 
   throw new TypeError(`The input must be a Uint8Array, a string, or an ArrayBuffer. Received a value of the type ${getTypeName(source)}.`)

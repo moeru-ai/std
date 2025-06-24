@@ -26,9 +26,9 @@ const defaults: WithRetryOptions = {
  * @returns A wrapped function with the same signature as func
  */
 export const withRetry = <A, R>(func: (...args: A[]) => Promise<R> | R, options?: Partial<WithRetryOptions>): (...args: A[]) => Promise<R> | R => {
-  const { onError, retry, retryCount, retryDelay } = merge(defaults, options)
+  let { onError, retry, retryCount, retryDelay } = merge(defaults, options)
 
-  const withRetryInternal = async (...args: A[]): Promise<TrampolineFn<R>> => {
+  let withRetryInternal = async (...args: A[]): Promise<TrampolineFn<R>> => {
     try {
       return await func(...args)
     }
