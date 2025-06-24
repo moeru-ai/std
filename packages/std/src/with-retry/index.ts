@@ -1,5 +1,8 @@
+import type { TrampolineFn } from '../trampoline'
+
 import { merge } from '../merge'
 import { sleep } from '../sleep'
+import { trampoline } from '../trampoline'
 
 interface WithRetryOptions {
   onError?: (err: unknown) => void
@@ -25,20 +28,22 @@ const defaults: WithRetryOptions = {
 export const withRetry = <A, R>(func: (...args: A[]) => Promise<R> | R, options?: Partial<WithRetryOptions>): (...args: A[]) => Promise<R> | R => {
   const { onError, retry, retryCount, retryDelay } = merge(defaults, options)
 
-  return async (args: A): Promise<R> => {
+  const withRetryInternal = async (...args: A[]): Promise<TrampolineFn<R>> => {
     try {
-      return await func(args)
+      return await func(...args)
     }
     catch (err) {
       onError?.(err)
 
       if (retryCount < retry) {
         await sleep(retryDelay)
-        return withRetry(func, { onError, retry, retryCount: retryCount + 1, retryDelay })(args)
+        return async () => withRetry(func, { onError, retry, retryCount: retryCount + 1, retryDelay })(...args)
       }
       else {
         throw err
       }
     }
   }
+
+  return async (...args: A[]) => trampoline<R>(async () => withRetryInternal(...args))
 }
