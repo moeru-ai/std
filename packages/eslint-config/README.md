@@ -1,0 +1,91 @@
+# @moeru/eslint-config
+
+> ESLint Configuration for Moeru AI.
+
+A superset of `@antfu/eslint-config` with optional features:
+
+- [Oxlint](https://oxc.rs/docs/guide/usage/linter) Support (with easy-to-use `moeru-lint` script)
+- [Perfectionist Natural](https://github.com/azat-io/eslint-plugin-perfectionist)
+- [SonarJS](https://github.com/SonarSource/SonarJS/blob/master/packages/jsts/src/rules/README.md)
+- [MaskNet](https://github.com/DimensionDev/eslint-plugin)
+- [De Morgan](https://github.com/azat-io/eslint-plugin-de-morgan)
+- [Prefer Arrow](https://github.com/TristonJ/eslint-plugin-prefer-arrow)
+- [Prefer Let](https://github.com/thefrontside/javascript/tree/v3/packages/eslint-plugin-prefer-let)
+
+## Usage
+
+### Starter Wizard
+
+You can use antfu's Starter Wizard to get started quickly:
+
+```bash
+pnpm dlx @antfu/eslint-config@latest
+```
+
+Replace `antfu()` to `defineConfig()`:
+
+```diff
+- import antfu from '@antfu/eslint-config'
++ import { defineConfig } from '@moeru/eslint-config'
+
+- export default antfu({
++ export default defineConfig({
+  ...options,
+})
+```
+
+### Manual Install
+
+```bash
+pnpm add -D eslint @antfu/eslint-config @moeru/eslint-config
+```
+
+```ts
+import { defineConfig } from '@moeru/eslint-config'
+
+export default defineConfig({
+  ...options,
+})
+```
+
+If you only need the default configuration, you can just re-export the default:
+
+```ts
+export { default } from '@moeru/eslint-config'
+```
+
+### With Oxlint
+
+```bash
+pnpm add -D oxlint eslint-plugin-oxlint
+```
+
+`@moeru/eslint-config` automatically detects if oxlint is installed, or you can specify it explicitly:
+
+```diff
+import { defineConfig } from '@moeru/eslint-config'
+
+export default defineConfig({
+  ...options,
++ oxlint: true,
+})
+```
+
+You can also use the moeru-lint script to simplify setup:
+
+```diff
+{
+  "scripts": {
+-   "lint": "oxlint && eslint",
++   "lint": "moeru-lint",
+#   just use "pnpm lint --fix"!
+-   "lint:fix": "oxlint --fix && eslint --fix"
+  }
+}
+```
+
+moeru-lint enables [ESLint Caching](https://eslint.org/docs/latest/use/command-line-interface#caching) by default to speed things up, you can disable it with `--no-cache`.
+
+## License
+
+[MIT](../../LICENSE.md)
