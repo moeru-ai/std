@@ -20,7 +20,8 @@ export const merge = <T1 extends object, T2 extends Partial<T1> = Partial<T1>>(
       continue
     }
 
-    // @ts-expect-error: Type 'T' is generic and can only be indexed for reading.
+    // eslint-disable-next-line ts/ban-ts-comment
+    // @ts-ignore: Type 'T' is generic and can only be indexed for reading.
     merged[key] = value as unknown
   }
 
