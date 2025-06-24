@@ -5,6 +5,7 @@ dictionaries: []
 words:
   - bumpp
   - denoland
+  - foxts
   - importantimport
   - lume
   - lumeland
@@ -12,7 +13,10 @@ words:
   - moeru
   - nolebase
   - pkgroll
+  - scule
   - sonarjs
+  - sukka
+  - unjs
   - vitepress
   - xsai
 ignoreWords: []
