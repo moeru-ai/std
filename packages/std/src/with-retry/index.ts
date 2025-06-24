@@ -22,7 +22,7 @@ const defaults: WithRetryOptions = {
  *
  * @returns A wrapped function with the same signature as func
  */
-export const withRetry = <A, R>(func: (...args: A[]) => Promise<R>, options?: Partial<WithRetryOptions>): (...args: A[]) => Promise<R> => {
+export const withRetry = <A, R>(func: (...args: A[]) => Promise<R> | R, options?: Partial<WithRetryOptions>): (...args: A[]) => Promise<R> | R => {
   const { onError, retry, retryCount, retryDelay } = merge(defaults, options)
 
   return async (args: A): Promise<R> => {
