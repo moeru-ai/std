@@ -10,7 +10,7 @@ export interface Result<out T> {
   mapErr: <U extends T>(fn: (error: unknown) => U) => Result<U>
 }
 
-export function Ok<T>(value: T): Result<T> {
+export const Ok = <T>(value: T): Result<T> => {
   return {
     orDefault: () => value,
     orUndefined: () => value,
@@ -33,7 +33,7 @@ export function Ok<T>(value: T): Result<T> {
   }
 }
 
-export function Err<T>(error: unknown): Result<T> {
+export const Err = <T>(error: unknown): Result<T> => {
   return {
     orDefault: (defaultValue: T) => defaultValue,
     orUndefined: () => undefined,
