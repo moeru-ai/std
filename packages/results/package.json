@@ -1,0 +1,44 @@
+{
+  "name": "@moeru/results",
+  "type": "module",
+  "version": "0.1.0-beta.4",
+  "description": "Small and tree-shakeable Result/Option implementation.",
+  "author": "Moeru AI",
+  "license": "MIT",
+  "homepage": "https://std.moeru.ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moeru-ai/std.git",
+    "directory": "packages/results"
+  },
+  "bugs": "https://github.com/moeru-ai/std/issues",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./option": "./src/option/index.ts",
+    "./result": "./src/result/index.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./option": {
+        "types": "./dist/option/index.d.ts",
+        "default": "./dist/option/index.js"
+      },
+      "./result": {
+        "types": "./dist/result/index.d.ts",
+        "default": "./dist/result/index.js"
+      },
+      "./package.json": "./package.json"
+    }
+  },
+  "scripts": {
+    "build": "pkgroll"
+  }
+}
