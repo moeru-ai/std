@@ -30,7 +30,7 @@ export const isOk = <T, E>(r: Result<T, E>): r is Ok<T> =>
 export const isErr = <T, E>(r: Result<T, E>): r is Err<E> =>
   r.__mr === 'err'
 
-export const orElse = <T, E>(r: Result<T, E>, fallback: Result<T, E>): Result<T, E> =>
+export const or = <T, E>(r: Result<T, E>, fallback: Result<T, E>): Result<T, E> =>
   isOk(r)
     ? r
     : fallback
