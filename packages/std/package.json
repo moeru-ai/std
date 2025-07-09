@@ -14,10 +14,11 @@
   "bugs": "https://github.com/moeru-ai/std/issues",
   "sideEffects": false,
   "exports": {
-    ".": "./src/index.ts",
     "./async-iterator": "./src/async-iterator/index.ts",
     "./base64": "./src/base64/index.ts",
     "./merge": "./src/merge/index.ts",
+    "./option": "./src/option/index.ts",
+    "./result": "./src/result/index.ts",
     "./set-interval": "./src/set-interval/index.ts",
     "./sleep": "./src/sleep/index.ts",
     "./trampoline": "./src/trampoline/index.ts",
@@ -28,10 +29,6 @@
   ],
   "publishConfig": {
     "exports": {
-      ".": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      },
       "./async-iterator": {
         "types": "./dist/async-iterator/index.d.ts",
         "default": "./dist/async-iterator/index.js"
@@ -43,6 +40,14 @@
       "./merge": {
         "types": "./dist/merge/index.d.ts",
         "default": "./dist/merge/index.js"
+      },
+      "./option": {
+        "types": "./dist/option/index.d.ts",
+        "default": "./dist/option/index.js"
+      },
+      "./result": {
+        "types": "./dist/result/index.d.ts",
+        "default": "./dist/result/index.js"
       },
       "./set-interval": {
         "types": "./dist/set-interval/index.d.ts",
@@ -61,9 +66,7 @@
         "default": "./dist/with-retry/index.js"
       },
       "./package.json": "./package.json"
-    },
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    }
   },
   "scripts": {
     "build": "pkgroll",
