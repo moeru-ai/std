@@ -85,12 +85,14 @@ export const unwrapOr = <T, E>(r: Result<T, E>, fallback: T): T =>
     ? r.value
     : fallback
 
-export const toOk = <T, E>(r: Result<T, E>): Option<T> =>
+// Originally Result.ok(), renamed optionOk due to naming conflict
+export const optionOk = <T, E>(r: Result<T, E>): Option<T> =>
   isOk(r)
     ? some(r.value)
     : none
 
-export const toErr = <T, E>(r: Result<T, E>): Option<E> =>
+// Originally Result.err(), renamed optionErr due to naming conflict
+export const optionErr = <T, E>(r: Result<T, E>): Option<E> =>
   isErr(r)
     ? some(r.error)
     : none
