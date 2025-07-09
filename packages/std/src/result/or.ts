@@ -12,7 +12,8 @@ export const orElse = <T, E>(r: Result<T, E>, onErrValue: (e: E) => Result<T, E>
     ? r
     : onErrValue(r.error)
 
+// eslint-disable-next-line sonarjs/no-identical-functions
 export const orElseAsync = async <T, E>(r: Result<T, E>, onErrValue: (e: E) => Promise<Result<T, E>>): Promise<Result<T, E>> =>
   isOk(r)
     ? r
-    : await onErrValue(r.error)
+    : onErrValue(r.error)

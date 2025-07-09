@@ -1,6 +1,6 @@
 import type { Result } from './core'
 
-import { isOk, isErr } from './is'
+import { isErr, isOk } from './is'
 
 export const expect = <T, E>(r: Result<T, E>, msg: string): T => {
   if (isOk(r))
@@ -15,4 +15,3 @@ export const expectErr = <T, E>(r: Result<T, E>, msg: string): E => {
   else
     throw new Error(msg, { cause: r.value })
 }
-

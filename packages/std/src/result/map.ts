@@ -1,8 +1,8 @@
+/* eslint-disable sonarjs/no-identical-functions */
 import type { Result } from './core'
 
 import { err, ok } from './core'
-
-import { isOk, isErr } from './is'
+import { isErr, isOk } from './is'
 
 export const map = <T1, T2, E>(r: Result<T1, E>, onOkValue: (v: T1) => T2): Result<T2, E> =>
   isOk(r)
@@ -31,7 +31,7 @@ export const mapOr = <T1, T2, E>(r: Result<T1, E>, onOkValue: (v: T1) => T2, fal
 
 export const mapOrAsync = async <T1, T2, E>(r: Result<T1, E>, onOkValue: (v: T1) => Promise<T2>, fallback: T2): Promise<T2> =>
   isOk(r)
-    ? await onOkValue(r.value)
+    ? onOkValue(r.value)
     : fallback
 
 export const mapOrElse = <T1, T2, E>(r: Result<T1, E>, onOkValue: (v: T1) => T2, onErrValue: (e: E) => T2): T2 =>
@@ -41,5 +41,5 @@ export const mapOrElse = <T1, T2, E>(r: Result<T1, E>, onOkValue: (v: T1) => T2,
 
 export const mapOrElseAsync = async <T1, T2, E>(r: Result<T1, E>, onOkValue: (v: T1) => Promise<T2>, onErrValue: (e: E) => Promise<T2>): Promise<T2> =>
   isOk(r)
-    ? await onOkValue(r.value)
-    : await onErrValue(r.error)
+    ? onOkValue(r.value)
+    : onErrValue(r.error)

@@ -2,8 +2,7 @@ import type { Option } from '../option/core'
 import type { Result } from './core'
 
 import { none, some } from '../option/core'
-
-import { isOk, isErr } from './is'
+import { isErr, isOk } from './is'
 
 // Originally Result.ok(), renamed optionOk due to naming conflict
 export const optionOk = <T, E>(r: Result<T, E>): Option<T> =>

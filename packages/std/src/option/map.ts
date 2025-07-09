@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-identical-functions */
 import type { Option } from './core'
 
 import { some } from './core'
@@ -14,14 +15,14 @@ export const mapAsync = async <T1, T2>(o: Option<T1>, onSomeValue: (v: T1) => Pr
     : o
 
 export const mapOr = <T1, T2>(o: Option<T1>, onSomeValue: (v: T1) => T2, fallback: T2): T2 =>
-    isSome(o)
-      ? onSomeValue(o.value)
-      : fallback
+  isSome(o)
+    ? onSomeValue(o.value)
+    : fallback
 
 export const mapOrAsync = async <T1, T2>(o: Option<T1>, onSomeValue: (v: T1) => Promise<T2>, fallback: T2): Promise<T2> =>
-    isSome(o)
-      ? await onSomeValue(o.value)
-      : fallback
+  isSome(o)
+    ? onSomeValue(o.value)
+    : fallback
 
 export const mapOrElse = <T1, T2>(o: Option<T1>, onSomeValue: (v: T1) => T2, onNone: () => T2): T2 =>
   isSome(o)
@@ -30,5 +31,5 @@ export const mapOrElse = <T1, T2>(o: Option<T1>, onSomeValue: (v: T1) => T2, onN
 
 export const mapOrElseAsync = async <T1, T2>(o: Option<T1>, onSomeValue: (v: T1) => Promise<T2>, onNone: () => Promise<T2>): Promise<T2> =>
   isSome(o)
-    ? await onSomeValue(o.value)
-    : await onNone()
+    ? onSomeValue(o.value)
+    : onNone()

@@ -19,7 +19,8 @@ export const unwrapOrElse = <T>(o: Option<T>, onNone: () => T): T =>
     ? o.value
     : onNone()
 
+// eslint-disable-next-line sonarjs/no-identical-functions
 export const unwrapOrElseAsync = async <T>(o: Option<T>, onNone: () => Promise<T>): Promise<T> =>
   isSome(o)
     ? o.value
-    : await onNone()
+    : onNone()
