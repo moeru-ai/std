@@ -1,4 +1,8 @@
+/* eslint-disable sonarjs/no-identical-functions */
 import type { Err, Ok, Result } from './core'
+
+export const isResult = <T, E>(r: unknown): r is Result<T, E> =>
+  r != null && typeof r === 'object' && '__mr' in r && typeof r.__mr === 'string' && ['err', 'ok'].includes(r.__mr)
 
 export const isOk = <T, E>(r: Result<T, E>): r is Ok<T> =>
   r.__mr === 'ok'
@@ -10,7 +14,7 @@ export const isOkAnd = <T, E>(r: Result<T, E>, onOk: (v: T) => boolean): boolean
 
 export const isOkAndAsync = async <T, E>(r: Result<T, E>, onOk: (v: T) => Promise<boolean>): Promise<boolean> =>
   isOk(r)
-    ? await onOk(r.value)
+    ? onOk(r.value)
     : false
 
 export const isErr = <T, E>(r: Result<T, E>): r is Err<E> =>
@@ -23,6 +27,5 @@ export const isErrAnd = <T, E>(r: Result<T, E>, onErr: (e: E) => boolean): boole
 
 export const isErrAndAsync = async <T, E>(r: Result<T, E>, onErr: (e: E) => Promise<boolean>): Promise<boolean> =>
   isErr(r)
-    ? await onErr(r.error)
+    ? onErr(r.error)
     : false
-

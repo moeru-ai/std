@@ -1,4 +1,8 @@
+/* eslint-disable sonarjs/no-identical-functions */
 import type { None, Option, Some } from './core'
+
+export const isOption = <T>(r: unknown): r is Option<T> =>
+  r != null && typeof r === 'object' && '__mo' in r && typeof r.__mo === 'string' && ['none', 'some'].includes(r.__mo)
 
 export const isNone = <T>(o: Option<T>): o is None =>
   o.__mo === 'none'
@@ -11,7 +15,7 @@ export const isNoneOr = <T>(o: Option<T>, onSomeValue: (v: T) => boolean): boole
 export const isNoneOrAsync = async <T>(o: Option<T>, onSomeValue: (v: T) => Promise<boolean>): Promise<boolean> =>
   isNone(o)
     ? true
-    : await onSomeValue(o.value)
+    : onSomeValue(o.value)
 
 export const isSome = <T>(o: Option<T>): o is Some<T> =>
   o.__mo === 'some'
@@ -23,6 +27,5 @@ export const isSomeAnd = <T>(o: Option<T>, onSomeValue: (v: T) => boolean): bool
 
 export const isSomeAndAsync = async <T>(o: Option<T>, onSomeValue: (v: T) => Promise<boolean>): Promise<boolean> =>
   isSome(o)
-    ? await onSomeValue(o.value)
+    ? onSomeValue(o.value)
     : false
-
