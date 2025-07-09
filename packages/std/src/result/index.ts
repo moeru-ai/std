@@ -1,66 +1,102 @@
-export interface Result<out T> {
-  orDefault: <U extends T>(defaultValue: U) => T
-  orUndefined: () => T | undefined
-  orElse: <U extends T>(fn: () => U) => T
-  unwrap: () => T
-  unwrapOver: (fn: (error: unknown) => void) => T
-  expect: (message?: string) => T
-  expectOver: (message?: string, fn?: (error: unknown) => void) => T
-  map: <U extends T>(fn: (value: T) => U) => Result<U>
-  mapErr: <U extends T>(fn: (error: unknown) => U) => Result<U>
+import type { Option } from '../option'
+
+import { none, some } from '../option'
+
+export interface Err<E> {
+  __mr: 'err'
+  error: E
 }
 
-export const Ok = <T>(value: T): Result<T> => {
-  return {
-    orDefault: () => value,
-    orUndefined: () => value,
-    orElse: fn => fn(),
-    unwrap: () => value,
-    unwrapOver: () => value,
-    expect: () => value,
-    expectOver: () => value,
-    map: (fn) => {
-      try {
-        return Ok(fn(value))
-      }
-      catch (err: unknown) {
-        return Err(err instanceof Error ? err : new Error(String(err)))
-      }
-    },
-    mapErr: <U extends T>(_fn: (error: unknown) => U) => {
-      return Ok(value) as Result<U>
-    },
-  }
+export interface Ok<T> {
+  __mr: 'ok'
+  value: T
 }
 
-export const Err = <T>(error: unknown): Result<T> => {
-  return {
-    orDefault: (defaultValue: T) => defaultValue,
-    orUndefined: () => undefined,
-    orElse: fn => fn(),
-    unwrap: () => {
-      throw error
-    },
-    unwrapOver: (fn) => {
-      fn(error)
-      throw error
-    },
-    expect: (message?: string) => {
-      const newError = new Error(message ?? 'Result is empty')
-      newError.cause = error
-      throw newError
-    },
-    expectOver: (message, fn) => {
-      fn?.(error)
-      const newError = new Error(message ?? 'Result is empty')
-      newError.cause = error
-      throw newError
-    },
-    map: () => {
-      return Err(error)
-    },
-    mapErr: (fn) => {
-      return Err(fn(error))
-    },
-  }
+export type Result<T, E> = Err<E> | Ok<T>
+
+export const err = <T, E>(error: E): Result<T, E> => ({
+  __mr: 'err',
+  error,
+})
+
+export const ok = <T, E>(value: T): Result<T, E> => ({
+  __mr: 'ok',
+  value,
+})
+
+export const isOk = <T, E>(r: Result<T, E>): r is Ok<T> =>
+  r.__mr === 'ok'
+
+export const isErr = <T, E>(r: Result<T, E>): r is Err<E> =>
+  r.__mr === 'err'
+
+export const orElse = <T, E>(r: Result<T, E>, fallback: Result<T, E>): Result<T, E> =>
+  isOk(r)
+    ? r
+    : fallback
+
+export const andThen = <T1, T2, E>(r: Result<T1, E>, onOk: (o: Ok<T1>) => Result<T2, E>): Result<T2, E> =>
+  isOk(r)
+    ? onOk(r)
+    : r
+
+// eslint-disable-next-line sonarjs/no-identical-functions
+export const andThenAsync = async <T1, T2, E>(r: Result<T1, E>, onOk: (o: Ok<T1>) => Promise<Result<T2, E>>): Promise<Result<T2, E>> =>
+  isOk(r)
+    ? onOk(r)
+    : r
+
+export const map = <T1, T2, E>(r: Result<T1, E>, onOkValue: (v: T1) => T2): Result<T2, E> =>
+  isOk(r)
+    ? ok(onOkValue(r.value))
+    : r
+
+export const mapAsync = async <T1, T2, E>(r: Result<T1, E>, onOkValue: (v: T1) => Promise<T2>): Promise<Result<T2, E>> =>
+  isOk(r)
+    ? ok(await onOkValue(r.value))
+    : r
+
+export const mapErr = <T, E1, E2>(r: Result<T, E1>, onErrValue: (v: E1) => E2): Result<T, E2> =>
+  isErr(r)
+    ? err(onErrValue(r.error))
+    : r
+
+export const mapErrAsync = async <T, E1, E2>(r: Result<T, E1>, onErrValue: (v: E1) => Promise<E2>): Promise<Result<T, E2>> =>
+  isErr(r)
+    ? err(await onErrValue(r.error))
+    : r
+
+export const expect = <T, E>(r: Result<T, E>, msg: string): T => {
+  if (isOk(r))
+    return r.value
+  else
+    throw new Error(msg, { cause: r.error })
 }
+
+export const unwrap = <T, E>(r: Result<T, E>): T => {
+  if (isOk(r))
+    return r.value
+  else
+    throw r.error
+}
+
+export const unwrapOr = <T, E>(r: Result<T, E>, fallback: T): T =>
+  isOk(r)
+    ? r.value
+    : fallback
+
+export const toOk = <T, E>(r: Result<T, E>): Option<T> =>
+  isOk(r)
+    ? some(r.value)
+    : none
+
+export const toErr = <T, E>(r: Result<T, E>): Option<E> =>
+  isErr(r)
+    ? some(r.error)
+    : none
+
+/** @experimental */
+export const extract = <T, E>(r: Result<T, E>): E | T =>
+  isOk(r)
+    ? r.value
+    : r.error
