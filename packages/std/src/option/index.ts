@@ -39,6 +39,16 @@ export const andThenAsync = async <T1, T2>(o: Option<T1>, onSome: (s: Some<T1>) 
     ? some(await onSome(o))
     : o
 
+export const map = <T1, T2>(o: Option<T1>, onSomeValue: (v: T1) => T2): Option<T2> =>
+  isSome(o)
+    ? some(onSomeValue(o.value))
+    : o
+
+export const mapAsync = async <T1, T2>(o: Option<T1>, onSomeValue: (v: T1) => Promise<T2>): Promise<Option<T2>> =>
+  isSome(o)
+    ? some(await onSomeValue(o.value))
+    : o
+
 export const match = <T1, T2>(o: Option<T1>, onSome: (s: Some<T1>) => T2, onNone: () => T2) =>
   isSome(o)
     ? onSome(o)
