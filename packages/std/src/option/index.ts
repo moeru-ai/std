@@ -1,3 +1,7 @@
+import type { Result } from '../result'
+
+import { err, ok } from '../result'
+
 export interface None {
   __mo: 'none'
 }
@@ -54,6 +58,11 @@ export const match = <T1, T2>(o: Option<T1>, onSome: (s: Some<T1>) => T2, onNone
   isSome(o)
     ? onSome(o)
     : onNone()
+
+export const okOr = <T, E>(o: Option<T>, error: E): Result<T, E> =>
+  isSome(o)
+    ? ok(o.value)
+    : err(error)
 
 /** @experimental */
 export const extract = <T>(o: Option<T>): T | undefined =>
