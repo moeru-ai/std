@@ -2,10 +2,10 @@
 import type { Err, Ok, Result } from './core'
 
 export const isResult = <T, E>(r: unknown): r is Result<T, E> =>
-  r != null && typeof r === 'object' && '__mr' in r && typeof r.__mr === 'string' && ['err', 'ok'].includes(r.__mr)
+  r != null && typeof r === 'object' && '__type__' in r && typeof r.__type__ === 'string' && ['err', 'ok'].includes(r.__type__)
 
 export const isOk = <T, E>(r: Result<T, E>): r is Ok<T> =>
-  r.__mr === 'ok'
+  r.__type__ === 'ok'
 
 export const isOkAnd = <T, E>(r: Result<T, E>, onOk: (v: T) => boolean): boolean =>
   isOk(r)
@@ -18,7 +18,7 @@ export const isOkAndAsync = async <T, E>(r: Result<T, E>, onOk: (v: T) => Promis
     : false
 
 export const isErr = <T, E>(r: Result<T, E>): r is Err<E> =>
-  r.__mr === 'err'
+  r.__type__ === 'err'
 
 export const isErrAnd = <T, E>(r: Result<T, E>, onErr: (e: E) => boolean): boolean =>
   isErr(r)
