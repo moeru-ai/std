@@ -46,6 +46,11 @@ export const mapErrAsync = async <T, E1, E2>(r: Result<T, E1>, onErrValue: (v: E
     ? err(await onErrValue(r.error))
     : r
 
+export const match = <T1, T2, E>(r: Result<T1, E>, onOk: (o: Ok<T1>) => T2, onErr: (e: Err<E>) => T2): T2 =>
+  isOk(r)
+    ? onOk(r)
+    : onErr(r)
+
 export const expect = <T, E>(r: Result<T, E>, msg: string): T => {
   if (isOk(r))
     return r.value

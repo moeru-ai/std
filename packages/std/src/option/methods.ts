@@ -36,7 +36,7 @@ export const mapAsync = async <T1, T2>(o: Option<T1>, onSomeValue: (v: T1) => Pr
     ? some(await onSomeValue(o.value))
     : o
 
-export const match = <T1, T2>(o: Option<T1>, onSome: (s: Some<T1>) => T2, onNone: () => T2) =>
+export const match = <T1, T2>(o: Option<T1>, onSome: (s: Some<T1>) => T2, onNone: () => T2): T2 =>
   isSome(o)
     ? onSome(o)
     : onNone()
