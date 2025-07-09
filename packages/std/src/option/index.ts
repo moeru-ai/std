@@ -24,19 +24,20 @@ export const isSome = <T>(o: Option<T>): o is Some<T> =>
 export const isNone = <T>(o: Option<T>): o is None =>
   o.__mo === 'none'
 
-export const orElse = <T>(o: Option<T>, fallback: Option<T>): Option<T> =>
+export const or = <T>(o: Option<T>, fallback: Option<T>): Option<T> =>
   isSome(o)
     ? o
     : fallback
 
-export const andThen = <T1, T2>(o: Option<T1>, onSome: (s: Some<T1>) => T2): Option<T2> =>
+export const andThen = <T1, T2>(o: Option<T1>, onSome: (s: Some<T1>) => Option<T2>): Option<T2> =>
   isSome(o)
-    ? some(onSome(o))
-    : none
+    ? onSome(o)
+    : o
 
-export const andThenAsync = async <T1, T2>(o: Option<T1>, onSome: (s: Some<T1>) => Promise<T2>): Promise<Option<T2>> =>
+// eslint-disable-next-line sonarjs/no-identical-functions
+export const andThenAsync = async <T1, T2>(o: Option<T1>, onSome: (s: Some<T1>) => Promise<Option<T2>>): Promise<Option<T2>> =>
   isSome(o)
-    ? some(await onSome(o))
+    ? onSome(o)
     : o
 
 export const map = <T1, T2>(o: Option<T1>, onSomeValue: (v: T1) => T2): Option<T2> =>
