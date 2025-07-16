@@ -10,6 +10,11 @@ import { version } from '../../package.json'
 
 const { values } = parseArgs({
   options: {
+    'debug': {
+      default: false,
+      short: 'd',
+      type: 'boolean',
+    },
     'fix': {
       default: false,
       short: 'f',
@@ -57,11 +62,13 @@ else {
   const cache = values['no-cache'] ? '' : '--cache'
   const flag = values.flag?.map(flag => `--flag ${flag}`).join(' ') ?? ''
 
-  console.info('moeru-lint: executing oxlint...\n')
-  const oxlint = spawn('oxlint', [fix, fixDangerously, fixSuggestions], { stdio: 'inherit' })
+  const oxcArgs = [fix, fixDangerously, fixSuggestions]
+  console.info(`moeru-lint: executing oxlint...\n${values.debug ? oxcArgs.join(' ') : ''}`)
+  const oxlint = spawn('oxlint', oxcArgs, { stdio: 'inherit' })
 
   oxlint.on('close', () => {
-    console.info('\nmoeru-lint: executing eslint...\n')
-    spawn('eslint', [cache, flag, fix, '.'], { stdio: 'inherit' })
+    const eslintArgs = [cache, flag, fix]
+    console.info(`\nmoeru-lint: executing eslint...\n${values.debug ? eslintArgs.join(' ') : ''}`)
+    spawn('eslint', eslintArgs, { stdio: 'inherit' })
   })
 }
