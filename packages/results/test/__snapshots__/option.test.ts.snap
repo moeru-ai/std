@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@moeru/results/option > basic 1`] = `[Error: 1 / 0 failed!]`;
+
+exports[`@moeru/results/option > basic 2`] = `[Error: called \`option.unwrap()\` on a \`None\` value]`;
