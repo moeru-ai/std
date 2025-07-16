@@ -66,12 +66,14 @@ else {
   const flag = values.flag?.map(flag => `--flag ${flag}`).join(' ') ?? ''
 
   const oxcArgs = [fix, fixDangerously, fixSuggestions, path]
-  console.info(`moeru-lint: executing oxlint...\n${values.debug ? oxcArgs.join(' ') : ''}`)
+  // eslint-disable-next-line sonarjs/no-nested-template-literals
+  console.info(`moeru-lint: executing oxlint... ${values.debug ? `(${oxcArgs.join(' ')})` : ''}\n`)
   const oxlint = spawn('oxlint', oxcArgs, { stdio: 'inherit' })
 
   oxlint.on('close', () => {
     const eslintArgs = [cache, fix, flag, path]
-    console.info(`\nmoeru-lint: executing eslint...\n${values.debug ? eslintArgs.join(' ') : ''}`)
+    // eslint-disable-next-line sonarjs/no-nested-template-literals
+    console.info(`\nmoeru-lint: executing eslint... ${values.debug ? `(${eslintArgs.join(' ')})` : ''}\n`)
     spawn('eslint', [eslintArgs.join(' ')], { stdio: 'inherit' })
   })
 }
