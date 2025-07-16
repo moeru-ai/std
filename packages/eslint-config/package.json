@@ -29,7 +29,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "pkgroll"
+    "build": "pkgroll",
+    "postinstall": "pnpm build"
   },
   "peerDependencies": {
     "@antfu/eslint-config": "^4.12.0",
