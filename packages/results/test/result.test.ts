@@ -14,24 +14,24 @@ describe('@moeru/results/result', () => {
 
   type MathResult = Result<number, MathError>
 
-  let div = (x: number, y: number): MathResult =>
+  const div = (x: number, y: number): MathResult =>
     y === 0
       ? err(MathError.DivisionByZero)
       : ok(x / y)
 
-  let sqrt = (x: number): MathResult =>
+  const sqrt = (x: number): MathResult =>
     x < 0
       ? err(MathError.NegativeSquareRoot)
       : ok(Math.sqrt(x))
 
-  let ln = (x: number): MathResult =>
+  const ln = (x: number): MathResult =>
     x <= 0
       ? err(MathError.NonPositiveLogarithm)
       : ok(Math.log(x))
 
   // https://doc.rust-lang.org/rust-by-example/std/result.html
   it('basic', () => {
-    let op = (x: number, y: number): number =>
+    const op = (x: number, y: number): number =>
       match(
         div(x, y),
         radio => match(
@@ -54,10 +54,10 @@ describe('@moeru/results/result', () => {
 
   // https://doc.rust-lang.org/rust-by-example/std/result/question_mark.html
   it('wrap', () => {
-    let op = (x: number, y: number): number => match(
+    const op = (x: number, y: number): number => match(
       wrap(() => {
-        let _ratio = unwrap(div(x, y))
-        let _ln = unwrap(ln(_ratio))
+        const _ratio = unwrap(div(x, y))
+        const _ln = unwrap(ln(_ratio))
         return sqrt(_ln)
       }),
       value => value,

@@ -18,15 +18,12 @@ describe('@moeru/results', () => {
 
   // https://doc.rust-lang.org/std/result/enum.Result.html#examples-26
   it('result.andThen', () => {
-    let arr2D = [['A0', 'A1'], ['B0', 'B1']]
-    let getArr2D = (index: number): Result<string[], string> => arr2D.at(index)
+    const arr2D = [['A0', 'A1'], ['B0', 'B1']]
+    const getArr2D = (index: number): Result<string[], string> => arr2D.at(index)
       ? ok(arr2D[index])
       : err('not found')
 
-    let item01 = andThen(getArr2D(0), row => okOr(from(row.at(1)), 'not found'))
-    expect(item01).toStrictEqual(ok('A1'))
-
-    let item20 = andThen(getArr2D(2), row => okOr(from(row.at(0)), 'not found'))
-    expect(item20).toStrictEqual(err('not found'))
+    expect(andThen(getArr2D(0), row => okOr(from(row.at(1)), 'not found'))).toStrictEqual(ok('A1'))
+    expect(andThen(getArr2D(2), row => okOr(from(row.at(0)), 'not found'))).toStrictEqual(err('not found'))
   })
 })

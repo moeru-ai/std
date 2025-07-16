@@ -13,16 +13,16 @@ import { sonarjs } from './configs/sonarjs'
 import { sortPackageJsonWithScripts } from './configs/sort'
 
 export interface MoeruOptions extends AntfuOptions {
+  masknet: boolean
   oxlint: boolean | { oxlintrcPath: string }
   perfectionist: boolean
   preferArrow: boolean
-  masknet: boolean
   sonarjs: boolean
 }
 
 const defaults: MoeruOptions = {
-  oxlint: isPackageInScope('oxlint'),
   masknet: true,
+  oxlint: isPackageInScope('oxlint'),
   perfectionist: true,
   preferArrow: true,
   sonarjs: true,
@@ -30,9 +30,9 @@ const defaults: MoeruOptions = {
 }
 
 export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedFlatConfigItem[]>[] => {
-  let options: MoeruOptions = merge(defaults, userOptions)
+  const options: MoeruOptions = merge(defaults, userOptions)
 
-  let results: Awaitable<TypedFlatConfigItem[]>[] = [
+  const results: Awaitable<TypedFlatConfigItem[]>[] = [
     deMorgan(),
     ignores(),
     sortPackageJsonWithScripts(),
@@ -58,7 +58,7 @@ export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedF
 
 // eslint-disable-next-line ts/promise-function-async
 export const defineConfig = (userOptions: Partial<MoeruOptions> = {}, ...userConfigs: Array<Parameters<typeof antfu>[1]>): ReturnType<typeof antfu> => {
-  let options: MoeruOptions = merge(defaults, userOptions)
+  const options: MoeruOptions = merge(defaults, userOptions)
 
   return antfu(options, ...moeru(options), ...userConfigs ?? [])
 }

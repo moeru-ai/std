@@ -29,7 +29,7 @@ const main = () => {
   tryDivision(4, 2) // "4 / 2 = 2"
   tryDivision(1, 0) // throw error
 
-  let optionalFloat = some(0)
+  const optionalFloat = some(0)
 
   console.log(`${optionalFloat} unwraps to ${o.unwrap(optionalFloat)}`)
   console.log(`${none} unwraps to ${o.unwrap(none)}`) // throw error

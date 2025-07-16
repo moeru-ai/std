@@ -7,12 +7,12 @@ import { match, unwrap } from '../src/option'
 
 describe('@moeru/results/option', () => {
   it('basic', () => {
-    let checkedDivision = (dividend: number, divisor: number): Option<number> =>
+    const checkedDivision = (dividend: number, divisor: number): Option<number> =>
       divisor === 0
         ? none
         : some(dividend / divisor)
 
-    let tryDivision = (dividend: number, divisor: number) =>
+    const tryDivision = (dividend: number, divisor: number) =>
       match(
         checkedDivision(dividend, divisor),
         quotient => `${dividend} / ${divisor} = ${quotient}`,
@@ -22,7 +22,7 @@ describe('@moeru/results/option', () => {
     expect(tryDivision(4, 2)).toBe('4 / 2 = 2')
     expect(() => tryDivision(1, 0)).toThrowErrorMatchingSnapshot()
 
-    let optionalFloat = some(0)
+    const optionalFloat = some(0)
     expect(unwrap(optionalFloat)).toBe(0)
     expect(() => unwrap(none)).toThrowErrorMatchingSnapshot()
   })
