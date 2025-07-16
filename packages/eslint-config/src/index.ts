@@ -9,7 +9,6 @@ import { masknet } from './configs/masknet'
 import { oxlint } from './configs/oxlint'
 import { perfectionist } from './configs/perfectionist'
 import { preferArrow } from './configs/prefer-arrow'
-import { preferLet } from './configs/prefer-let'
 import { sonarjs } from './configs/sonarjs'
 import { sortPackageJsonWithScripts } from './configs/sort'
 
@@ -17,14 +16,12 @@ export interface MoeruOptions extends AntfuOptions {
   oxlint: boolean | { oxlintrcPath: string }
   perfectionist: boolean
   preferArrow: boolean
-  preferLet: boolean
 }
 
 const defaults: MoeruOptions = {
   oxlint: isPackageInScope('oxlint'),
   perfectionist: true,
   preferArrow: true,
-  preferLet: true,
   typescript: { tsconfigPath: './tsconfig.json' },
 }
 
@@ -44,9 +41,6 @@ export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedF
 
   if (options.preferArrow)
     results.push(preferArrow())
-
-  if (options.preferLet)
-    results.push(preferLet())
 
   if (options.oxlint !== false)
     results.push(oxlint(options.oxlint))
