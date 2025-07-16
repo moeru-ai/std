@@ -16,12 +16,16 @@ export interface MoeruOptions extends AntfuOptions {
   oxlint: boolean | { oxlintrcPath: string }
   perfectionist: boolean
   preferArrow: boolean
+  masknet: boolean
+  sonarjs: boolean
 }
 
 const defaults: MoeruOptions = {
   oxlint: isPackageInScope('oxlint'),
+  masknet: true,
   perfectionist: true,
   preferArrow: true,
+  sonarjs: true,
   typescript: { tsconfigPath: './tsconfig.json' },
 }
 
@@ -31,10 +35,14 @@ export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedF
   let results: Awaitable<TypedFlatConfigItem[]>[] = [
     deMorgan(),
     ignores(),
-    masknet(options),
-    sonarjs(),
     sortPackageJsonWithScripts(),
   ]
+
+  if (options.masknet)
+    results.push(masknet(options))
+
+  if (options.sonarjs)
+    results.push(sonarjs())
 
   if (options.perfectionist)
     results.push(perfectionist())
