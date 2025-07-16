@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@moeru/results > result.expect 1`] = `[Error: Testing expect]`;
+
+exports[`@moeru/results > result.expectErr 1`] = `[Error: Testing expectErr]`;

@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@moeru/results > result.unwrap 1`] = `[Error: called \`result.unwrap()\` on an \`Err\` value]`;
+
+exports[`@moeru/results > result.unwrapErr 1`] = `[Error: called \`result.unwrapErr()\` on an \`Ok\` value]`;
