@@ -56,8 +56,8 @@ describe('@moeru/results/result', () => {
   it('wrap', () => {
     let op = (x: number, y: number): number => match(
       wrap(() => {
-        let ratio = unwrap(div(x, y))
-        let _ln = unwrap(ln(ratio))
+        let _ratio = unwrap(div(x, y))
+        let _ln = unwrap(ln(_ratio))
         return sqrt(_ln)
       }),
       value => value,
