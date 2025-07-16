@@ -1,6 +1,7 @@
 export * from './and'
 export * from './extract'
 export * from './filter'
+export * from './from'
 export * from './is'
 export * from './map'
 export * from './match'
