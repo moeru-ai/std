@@ -39,6 +39,7 @@
     }
   },
   "scripts": {
-    "build": "pkgroll"
+    "build": "pkgroll",
+    "test": "vitest run"
   }
 }

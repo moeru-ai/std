@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`@moeru/results/result > basic 1`] = `"NegativeSquareRoot"`;
+
+exports[`@moeru/results/result > basic 2`] = `"DivisionByZero"`;
+
+exports[`@moeru/results/result > wrap 1`] = `"NegativeSquareRoot"`;
+
+exports[`@moeru/results/result > wrap 2`] = `[Error: called \`result.unwrap()\` on an \`Err\` value]`;
