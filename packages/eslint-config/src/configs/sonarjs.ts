@@ -10,6 +10,7 @@ export const sonarjs = (): TypedFlatConfigItem[] => [{
   rules: {
     ...sonarjsPlugin.configs.recommended.rules,
     'sonarjs/fixme-tag': 'warn',
+    'sonarjs/no-commented-code': 'warn',
     'sonarjs/todo-tag': 'warn',
   },
 }]
