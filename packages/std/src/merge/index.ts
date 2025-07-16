@@ -5,12 +5,12 @@ export const merge = <T1 extends object, T2 extends Partial<T1> = Partial<T1>>(
   defaults: T1,
   user?: T2,
 ): T1 => {
-  let merged = { ...defaults }
+  const merged = { ...defaults }
 
   if (!user)
     return merged
 
-  for (let [key, value] of Object.entries(user)) {
+  for (const [key, value] of Object.entries(user)) {
     if (value === undefined)
       continue
 

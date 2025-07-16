@@ -6,7 +6,7 @@ import { filter } from './filter'
 describe('@moeru/results', () => {
   // https://doc.rust-lang.org/std/option/enum.Option.html#examples-25
   it('option.filter', () => {
-    let isEven = (n: number) => n % 2 === 0
+    const isEven = (n: number) => n % 2 === 0
 
     expect(filter(none, isEven)).toStrictEqual(none)
     expect(filter(some(3), isEven)).toStrictEqual(none)

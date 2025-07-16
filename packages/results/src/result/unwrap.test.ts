@@ -24,7 +24,7 @@ describe('@moeru/results', () => {
 
   // https://doc.rust-lang.org/std/result/enum.Result.html#examples-30
   it('result.unwrapOrElse', () => {
-    let count = (x: string) => x.length
+    const count = (x: string) => x.length
 
     expect(unwrapOrElse<number, string>(ok(2), count)).toBe(2)
     expect(unwrapOrElse(err('foo'), count)).toBe(3)

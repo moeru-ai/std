@@ -16,8 +16,8 @@ describe('@moeru/results', () => {
 
   // https://doc.rust-lang.org/std/result/enum.Result.html#examples-28
   it('orElse', () => {
-    let sq = (x: number): Result<number, number> => ok(x * x)
-    let er = (x: number): Result<number, number> => err(x)
+    const sq = (x: number): Result<number, number> => ok(x * x)
+    const er = (x: number): Result<number, number> => err(x)
 
     expect(orElse(orElse<number, number>(ok(2), sq), sq)).toStrictEqual(ok(2))
     expect(orElse(orElse<number, number>(ok(2), er), sq)).toStrictEqual(ok(2))

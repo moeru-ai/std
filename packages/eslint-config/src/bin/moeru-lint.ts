@@ -51,14 +51,14 @@ else if (values.help) {
   console.info('Usage: moeru-lint [--fix] [--flag <flag>]')
 }
 else {
-  let fix = values.fix ? '--fix' : ''
-  let fixDangerously = values['fix-dangerously'] ? '--fix-dangerously' : ''
-  let fixSuggestions = values['fix-suggestions'] ? '--fix-suggestions' : ''
-  let cache = values['no-cache'] ? '' : '--cache'
-  let flag = values.flag?.map(flag => `--flag ${flag}`).join(' ') ?? ''
+  const fix = values.fix ? '--fix' : ''
+  const fixDangerously = values['fix-dangerously'] ? '--fix-dangerously' : ''
+  const fixSuggestions = values['fix-suggestions'] ? '--fix-suggestions' : ''
+  const cache = values['no-cache'] ? '' : '--cache'
+  const flag = values.flag?.map(flag => `--flag ${flag}`).join(' ') ?? ''
 
   console.info('moeru-lint: executing oxlint...\n')
-  let oxlint = spawn('oxlint', [fix, fixDangerously, fixSuggestions], { stdio: 'inherit' })
+  const oxlint = spawn('oxlint', [fix, fixDangerously, fixSuggestions], { stdio: 'inherit' })
 
   oxlint.on('close', () => {
     console.info('\nmoeru-lint: executing eslint...\n')

@@ -1,5 +1,5 @@
 const getTypeName = (value: unknown): string => {
-  let type = typeof value
+  const type = typeof value
 
   if (type !== 'object')
     return type

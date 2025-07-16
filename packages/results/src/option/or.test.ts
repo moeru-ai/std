@@ -14,8 +14,8 @@ describe('@moeru/results', () => {
 
   // https://doc.rust-lang.org/std/option/enum.Option.html#examples-27
   it('option.okOrElse', () => {
-    let nobody = () => none
-    let vikings = () => some('vikings')
+    const nobody = () => none
+    const vikings = () => some('vikings')
 
     expect(orElse(some('barbarians'), vikings)).toStrictEqual(some('barbarians'))
     expect(orElse(none, vikings)).toStrictEqual(some('vikings'))

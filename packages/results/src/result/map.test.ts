@@ -23,7 +23,7 @@ describe('@moeru/results', () => {
 
   // https://doc.rust-lang.org/std/result/enum.Result.html#examples-11
   it('result.mapErr', () => {
-    let stringify = (str: number | string) => `error code: ${str}`
+    const stringify = (str: number | string) => `error code: ${str}`
 
     expect(mapErr<number, string, string>(ok(2), stringify)).toStrictEqual(ok(2))
     expect(mapErr<number, number, string>(err(13), stringify)).toStrictEqual(err('error code: 13'))

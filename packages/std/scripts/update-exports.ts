@@ -4,7 +4,7 @@ const entries = await readdir('./src', { withFileTypes: true })
 
 const exports: string[] = []
 
-for (let entry of entries) {
+for (const entry of entries) {
   if (entry.isDirectory())
     exports.push(entry.name)
 }

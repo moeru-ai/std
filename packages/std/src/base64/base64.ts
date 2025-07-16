@@ -2,10 +2,10 @@ import { base64abc } from './_base64abc'
 import { validateBinaryLike } from './_validate-binary-like'
 
 export const encodeBase64 = (data: ArrayBuffer | string | Uint8Array): string => {
-  let uint8 = validateBinaryLike(data)
+  const uint8 = validateBinaryLike(data)
   let result = ''
   let i
-  let l = uint8.length
+  const l = uint8.length
   for (i = 2; i < l; i += 3) {
     result += base64abc[(uint8[i - 2]) >> 2]
     result += base64abc[
@@ -37,10 +37,10 @@ export const encodeBase64 = (data: ArrayBuffer | string | Uint8Array): string =>
 
 export const decodeBase64 = (b64: string): Uint8Array => {
   // eslint-disable-next-line @masknet/no-builtin-base64
-  let binString = atob(b64)
-  let size = binString.length
+  const binString = atob(b64)
+  const size = binString.length
 
-  let bytes = new Uint8Array(size)
+  const bytes = new Uint8Array(size)
   for (let i = 0; i < size; i++) {
     bytes[i] = binString.charCodeAt(i)
   }

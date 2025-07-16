@@ -6,17 +6,17 @@ export const setClockInterval = (func: (...args: any[]) => any, interval: number
   let clockTimer: ReturnType<typeof setTimeout>
 
   // eslint-disable-next-line sonarjs/pseudo-random
-  let timerId = Math.floor(Math.random() * 1e10)
+  const timerId = Math.floor(Math.random() * 1e10)
 
-  let recurFunc = () => {
+  const recurFunc = () => {
     func()
-    let realExecuteTime = new Date().getTime()
+    const realExecuteTime = new Date().getTime()
     if (!start) {
       start = realExecuteTime
     }
 
     tick = tick || start
-    let diff = realExecuteTime - tick
+    const diff = realExecuteTime - tick
     tick += interval
 
     // Since setTimeout is not accurate, we need to adjust the interval
@@ -30,7 +30,7 @@ export const setClockInterval = (func: (...args: any[]) => any, interval: number
 }
 
 export const clearClockInterval = (timerId: number) => {
-  let timer = timerMap.get(timerId)
+  const timer = timerMap.get(timerId)
   if (timer == null) {
     return
   }
