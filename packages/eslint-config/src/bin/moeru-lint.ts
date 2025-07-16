@@ -67,8 +67,8 @@ else {
   const oxlint = spawn('oxlint', oxcArgs, { stdio: 'inherit' })
 
   oxlint.on('close', () => {
-    const eslintArgs = [cache, flag, fix]
+    const eslintArgs = [cache, fix, flag]
     console.info(`\nmoeru-lint: executing eslint...\n${values.debug ? eslintArgs.join(' ') : ''}`)
-    spawn('eslint', eslintArgs, { stdio: 'inherit' })
+    spawn('eslint', [eslintArgs.join(' ')], { stdio: 'inherit' })
   })
 }
