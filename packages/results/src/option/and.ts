@@ -1,4 +1,4 @@
-import type { Option, Some } from './core'
+import type { Option, Some } from '../core'
 
 import { isNone, isSome } from './is'
 

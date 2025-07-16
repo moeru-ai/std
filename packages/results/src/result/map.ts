@@ -1,7 +1,7 @@
 /* eslint-disable sonarjs/no-identical-functions */
-import type { Result } from './core'
+import type { Result } from '../core'
 
-import { err, ok } from './core'
+import { err, ok } from '../core'
 import { isErr, isOk } from './is'
 
 export const map = <T1, T2, E>(r: Result<T1, E>, onOkValue: (v: T1) => T2): Result<T2, E> =>

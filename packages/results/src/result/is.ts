@@ -1,5 +1,5 @@
 /* eslint-disable sonarjs/no-identical-functions */
-import type { Err, Ok, Result } from './core'
+import type { Err, Ok, Result } from '../core'
 
 export const isResult = <T, E>(r: unknown): r is Result<T, E> =>
   r != null && typeof r === 'object' && '__type__' in r && typeof r.__type__ === 'string' && ['err', 'ok'].includes(r.__type__)

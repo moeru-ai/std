@@ -1,7 +1,7 @@
 /* eslint-disable sonarjs/no-identical-functions */
-import type { Option } from './core'
+import type { Option } from '../core'
 
-import { some } from './core'
+import { some } from '../core'
 import { isSome } from './is'
 
 export const map = <T1, T2>(o: Option<T1>, onSomeValue: (v: T1) => T2): Option<T2> =>

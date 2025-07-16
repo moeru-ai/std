@@ -1,7 +1,6 @@
-import type { Result } from '../result/core'
-import type { Option } from './core'
+import type { Option, Result } from '../core'
 
-import { err, ok } from '../result/core'
+import { err, ok } from '../core'
 import { isSome } from './is'
 
 export const okOr = <T, E>(o: Option<T>, error: E): Result<T, E> =>

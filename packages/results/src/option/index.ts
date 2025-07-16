@@ -1,5 +1,5 @@
 export * from './and'
-export * from './core'
+export * from '../core'
 export * from './extract'
 export * from './is'
 export * from './map'

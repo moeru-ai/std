@@ -1,7 +1,6 @@
-import type { Option } from '../option/core'
-import type { Result } from './core'
+import type { Option, Result } from '../core'
 
-import { none, some } from '../option/core'
+import { none, some } from '../core'
 import { isErr, isOk } from './is'
 
 // Originally Result.ok(), renamed optionOk due to naming conflict

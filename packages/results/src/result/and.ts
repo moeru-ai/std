@@ -1,4 +1,4 @@
-import type { Ok, Result } from './core'
+import type { Ok, Result } from '../core'
 
 import { isOk } from './is'
 

@@ -1,4 +1,4 @@
-import type { Option } from './core'
+import type { Option } from '../core'
 
 import { isOption } from './is'
 

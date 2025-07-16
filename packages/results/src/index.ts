@@ -1,16 +1,3 @@
-import type { None, Option, Some } from './option'
-import type { Err, Ok, Result } from './result'
-
-import * as option from './option'
-import * as result from './result'
-
-export {
-  Err,
-  None,
-  Ok,
-  Option,
-  option,
-  result,
-  Result,
-  Some,
-}
+export * from './core'
+export * as option from './option'
+export * as result from './result'

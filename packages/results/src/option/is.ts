@@ -1,5 +1,5 @@
 /* eslint-disable sonarjs/no-identical-functions */
-import type { None, Option, Some } from './core'
+import type { None, Option, Some } from '../core'
 
 export const isOption = <T>(r: unknown): r is Option<T> =>
   r != null && typeof r === 'object' && '__type__' in r && typeof r.__type__ === 'string' && ['none', 'some'].includes(r.__type__)
