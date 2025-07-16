@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest'
 
 import type { Result } from '../src'
 
-import { err, match, ok, unwrap, wrap } from '../src/result'
+import { err, ok } from '../src'
+import { match, unwrap, wrap } from '../src/result'
 
 describe('@moeru/results/result', () => {
   enum MathError {

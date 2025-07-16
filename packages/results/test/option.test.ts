@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest'
 
 import type { Option } from '../src'
 
-import { match, none, some, unwrap } from '../src/option'
+import { none, some } from '../src'
+import { match, unwrap } from '../src/option'
 
 describe('@moeru/results/option', () => {
   it('basic', () => {
