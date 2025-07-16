@@ -1,6 +1,6 @@
 export * from './and'
-export * from '../core'
 export * from './extract'
+export * from './filter'
 export * from './is'
 export * from './map'
 export * from './match'
