@@ -87,9 +87,50 @@ const main = () =>
   console.log(op(1, 10))
 ```
 
-#### Wrap
+### Methods
 
-With the `wrap` method, you can achieve something like the question mark operator in Rust.
+Most of the methods are the same as in Rust.
+
+We provide different import points for Option and Result:
+
+```ts
+import { option as o, result as r } from '@moeru/results'
+// import * as o from '@moeru/results/option'
+// import * as r from '@moeru/results/result'
+
+console.log(Object.keys(o))
+console.log(Object.keys(r))
+```
+
+###### extract
+
+Extracted values or errors.
+
+```ts
+import { option as o, ok, result as r, some } from '@moeru/results'
+
+o.extract(some('foo') as Option<string>) // string | undefined
+r.extract(ok('bar') as Result<string, Error>) // string | Error
+```
+
+###### from
+
+Convert common types / function results to Option or Result.
+
+```ts
+import { option as o, result as r } from '@moeru/results'
+
+o.from('foo' as 'foo' | undefined) // Option<'foo'>
+
+export const tryParseURL = (url: string) =>
+  r.from(() => new URL(url)) // Result<string, Error>
+```
+
+###### wrap
+
+You can achieve something like the question mark operator in Rust.
+
+Let's modify the Result Example above to use `wrap` / `unwrap` instead of `match`:
 
 ```diff
 const op = (x: number, y: number): number =>
