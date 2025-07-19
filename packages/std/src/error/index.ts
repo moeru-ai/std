@@ -36,13 +36,10 @@ export const errorNameFrom = (err: null | undefined | unknown): string | undefin
     ? err.name
     : undefined
 
-export const errorMessageFrom = (err: null | undefined | unknown): string | undefined => {
-  if (!isErrorLike(err)) {
-    return undefined
-  }
-
-  return err.message
-}
+export const errorMessageFrom = (err: null | undefined | unknown): string | undefined =>
+  isErrorLike(err)
+    ? err.message
+    : undefined
 
 export const errorStackFrom = (err: null | undefined | unknown): null | string | undefined => {
   if (!isErrorLike(err)) {
