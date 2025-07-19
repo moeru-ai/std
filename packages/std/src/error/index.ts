@@ -31,13 +31,10 @@ export const isError = (err: null | undefined | unknown): err is Error => {
   return err instanceof Error
 }
 
-export const errorNameFrom = (err: null | undefined | unknown): string | undefined => {
-  if (!isErrorLike(err)) {
-    return undefined
-  }
-
-  return err.name
-}
+export const errorNameFrom = (err: null | undefined | unknown): string | undefined =>
+  isErrorLike(err)
+    ? err.name
+    : undefined
 
 export const errorMessageFrom = (err: null | undefined | unknown): string | undefined => {
   if (!isErrorLike(err)) {
