@@ -22,14 +22,6 @@ export const isErrorLike = <C = unknown>(err: null | undefined | unknown): err i
   return hasName && hasMessage
 }
 
-export const isError = (err: null | undefined | unknown): err is Error => {
-  if (!isErrorLike(err)) {
-    return false
-  }
-
-  return err instanceof Error
-}
-
 export const errorNameFrom = (err: null | undefined | unknown): string | undefined =>
   isErrorLike(err)
     ? err.name
