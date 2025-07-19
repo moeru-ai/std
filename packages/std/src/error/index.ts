@@ -8,15 +8,14 @@ type Nullable<T> = {
 }
 
 export const isErrorLike = <C = unknown>(err: null | undefined | unknown): err is ErrorLike<C> => {
-  if (err == null) {
+  if (err == null)
     return false
-  }
-  if (err instanceof Error) {
+
+  if (err instanceof Error)
     return true
-  }
-  if (typeof err !== 'object') {
+
+  if (typeof err !== 'object')
     return false
-  }
 
   const hasName = 'name' in err && typeof err.name === 'string'
   const hasMessage = 'message' in err && typeof err.message === 'string'
