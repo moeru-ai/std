@@ -20,9 +20,7 @@ export const isErrorLike = <C = unknown>(err: null | undefined | unknown): err i
   if (typeof err !== 'object')
     return false
 
-  const hasName = 'name' in err && typeof err.name === 'string'
-  const hasMessage = 'message' in err && typeof err.message === 'string'
-  return hasName && hasMessage
+  return 'name' in err && typeof err.name === 'string' && 'message' in err && typeof err.message === 'string'
 }
 
 export const errorNameFrom = (err: null | undefined | unknown): string | undefined =>
@@ -35,17 +33,10 @@ export const errorMessageFrom = (err: null | undefined | unknown): string | unde
     ? err.message
     : undefined
 
-export const errorStackFrom = (err: null | undefined | unknown): null | string | undefined => {
-  if (!isErrorLike(err)) {
-    return undefined
-  }
-  if (err.stack == null) {
-    const error = new Error(errorMessageFrom(err))
-    return error.stack
-  }
-
-  return err.stack
-}
+export const errorStackFrom = (err: null | undefined | unknown): null | string | undefined =>
+  isErrorLike(err)
+    ? err.stack ?? new Error(errorMessageFrom(err)).stack
+    : undefined
 
 export const errorCauseFrom = <C>(err: null | undefined | unknown): C | undefined => {
   if (!isErrorLike(err) || err.cause == null)
@@ -56,27 +47,11 @@ export const errorCauseFrom = <C>(err: null | undefined | unknown): C | undefine
 }
 
 export const isErrorEq = (src: null | undefined | unknown, target: null | undefined | unknown): boolean => {
-  if (!isErrorLike(src) || !isErrorLike(target)) {
+  if (!isErrorLike(src) || !isErrorLike(target))
     return false
-  }
 
-  const srcName = errorNameFrom(src)
-  const targetName = errorNameFrom(target)
-  if (srcName == null || targetName == null) {
-    return false
-  }
-
-  if (srcName !== targetName) {
-    return false
-  }
-
-  const srcMessage = errorMessageFrom(src)
-  const targetMessage = errorMessageFrom(target)
-  if (srcMessage == null || targetMessage == null) {
-    return false
-  }
-
-  return srcMessage === targetMessage
+  return errorNameFrom(src) === errorNameFrom(target)
+    && errorMessageFrom(src) === errorMessageFrom(target)
 }
 
 export const isErrorTypeEq = (src: null | undefined | unknown, target: null | undefined | unknown): boolean => {
