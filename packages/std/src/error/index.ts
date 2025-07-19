@@ -7,6 +7,9 @@ type Nullable<T> = {
   [P in keyof T]: null | T[P]
 }
 
+export const isError = (err: null | undefined | unknown): err is Error =>
+  err instanceof Error
+
 export const isErrorLike = <C = unknown>(err: null | undefined | unknown): err is ErrorLike<C> => {
   if (err == null)
     return false
