@@ -89,9 +89,8 @@ export const isErrorEq = (src: null | undefined | unknown, target: null | undefi
 }
 
 export const isErrorTypeEq = (src: null | undefined | unknown, target: null | undefined | unknown): boolean => {
-  if (!isErrorLike(src) || !isErrorLike(target)) {
+  if (!isErrorLike(src) || !isErrorLike(target))
     return false
-  }
 
   return errorNameFrom(src) === errorNameFrom(target)
 }
