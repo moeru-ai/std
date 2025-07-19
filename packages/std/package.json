@@ -17,6 +17,7 @@
     ".": "./src/index.ts",
     "./async-iterator": "./src/async-iterator/index.ts",
     "./base64": "./src/base64/index.ts",
+    "./error": "./src/error/index.ts",
     "./merge": "./src/merge/index.ts",
     "./set-interval": "./src/set-interval/index.ts",
     "./sleep": "./src/sleep/index.ts",
@@ -39,6 +40,10 @@
       "./base64": {
         "types": "./dist/base64/index.d.ts",
         "default": "./dist/base64/index.js"
+      },
+      "./error": {
+        "types": "./dist/error/index.d.ts",
+        "default": "./dist/error/index.js"
       },
       "./merge": {
         "types": "./dist/merge/index.d.ts",
@@ -67,6 +72,8 @@
   },
   "scripts": {
     "build": "pkgroll",
-    "prebuild": "tsx scripts/update-exports.ts"
+    "prebuild": "tsx scripts/update-exports.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
   }
 }
