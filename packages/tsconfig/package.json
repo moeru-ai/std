@@ -1,0 +1,22 @@
+{
+  "name": "@moeru/tsconfig",
+  "type": "module",
+  "version": "0.1.0-beta.6",
+  "description": "TypeScript Configuration for Moeru AI.",
+  "author": "Moeru AI",
+  "license": "MIT",
+  "homepage": "https://std.moeru.ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moeru-ai/std.git",
+    "directory": "packages/tsconfig"
+  },
+  "bugs": "https://github.com/moeru-ai/std/issues",
+  "sideEffects": false,
+  "exports": {
+    ".": "./tsconfig.json",
+    "./tsconfig.json": "./tsconfig.json",
+    "./tsconfig.node.json": "./tsconfig.node.json",
+    "./package.json": "./package.json"
+  }
+}

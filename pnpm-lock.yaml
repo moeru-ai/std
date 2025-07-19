@@ -17,6 +17,9 @@ importers:
       '@moeru/eslint-config':
         specifier: workspace:^
         version: link:packages/eslint-config
+      '@moeru/tsconfig':
+        specifier: workspace:^
+        version: link:packages/tsconfig
       '@types/node':
         specifier: ^22.15.2
         version: 22.15.2
@@ -97,6 +100,8 @@ importers:
   packages/results: {}
 
   packages/std: {}
+
+  packages/tsconfig: {}
 
 packages:
 
