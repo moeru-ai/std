@@ -93,11 +93,5 @@ export const isErrorTypeEq = (src: null | undefined | unknown, target: null | un
     return false
   }
 
-  const srcName = errorNameFrom(src)
-  const targetName = errorNameFrom(target)
-  if (srcName == null || targetName == null) {
-    return false
-  }
-
-  return srcName === targetName
+  return errorNameFrom(src) === errorNameFrom(target)
 }
