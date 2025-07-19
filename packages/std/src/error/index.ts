@@ -45,12 +45,8 @@ export const errorStackFrom = (err: null | undefined | unknown): null | string |
 }
 
 export const errorCauseFrom = <C>(err: null | undefined | unknown): C | undefined => {
-  if (!isErrorLike(err)) {
+  if (!isErrorLike(err) || err.cause == null)
     return undefined
-  }
-  if (err.cause == null) {
-    return undefined
-  }
 
   // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
   return err.cause as C | undefined
