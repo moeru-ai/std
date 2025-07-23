@@ -1,6 +1,6 @@
 # @moeru/std
 
-Standard TypeScript Library for Moeru AI.
+Standard for Moeru AI.
 
 ## License
 

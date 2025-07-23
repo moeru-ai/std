@@ -9,6 +9,8 @@
     "---results---",
     "results/index",
     "---eslint-config---",
-    "eslint-config/index"
+    "eslint-config/index",
+    "---tsconfig---",
+    "tsconfig/index"
   ]
 }
