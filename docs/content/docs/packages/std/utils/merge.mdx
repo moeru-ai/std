@@ -1,0 +1,29 @@
+---
+title: Merge
+description: Smaller alternative to defu.
+---
+
+## merge
+
+```ts twoslash
+import { merge } from '@moeru/std/merge'
+
+export interface Options {
+  a: string
+  b?: {
+    c?: string
+    d?: number
+  }
+}
+
+const defaults: Options = {
+  a: 'defaults',
+  b: { d: 114514 },
+}
+
+export const mergeOptions = (userOptions?: Partial<Options>) => merge<Options>(defaults, userOptions)
+
+mergeOptions({ a: 'userOptions' }) // { a: 'userOptions', b: { d: 114514 }}
+mergeOptions({ b: { c: 'foo' } }) // { a: 'defaults', b: { c: 'foo', d: 114514 }}
+mergeOptions({ b: { d: 1919810 } }) // { a: 'defaults', b: { d: 1919810 }}
+```
