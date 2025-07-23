@@ -81,6 +81,9 @@ importers:
         specifier: ^0.3.3
         version: 0.3.3(typescript@5.8.3)
     devDependencies:
+      '@moeru/results':
+        specifier: workspace:^
+        version: link:../packages/results
       '@moeru/std':
         specifier: workspace:^
         version: link:../packages/std

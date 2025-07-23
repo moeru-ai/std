@@ -20,6 +20,7 @@
     "twoslash": "^0.3.3"
   },
   "devDependencies": {
+    "@moeru/results": "workspace:^",
     "@moeru/std": "workspace:^",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/mdx": "^2.0.13",

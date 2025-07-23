@@ -7,7 +7,7 @@ description: Small and tree-shakeable Result/Option implementation.
 
 > compare with [Rust by Example](https://doc.rust-lang.org/rust-by-example/std/option.html)
 
-```ts
+```ts twoslash
 import type { Option } from '@moeru/results'
 
 import { none, option as o, some } from '@moeru/results'
@@ -39,7 +39,7 @@ const main = () => {
 
 > compare with [Rust by Example](https://doc.rust-lang.org/rust-by-example/std/result.html)
 
-```ts
+```ts twoslash
 import type { Result } from '@moeru/results'
 
 import { err, ok, result as r } from '@moeru/results'
@@ -92,7 +92,7 @@ Most of the methods are the same as in Rust.
 
 We provide different import points for Option and Result:
 
-```ts
+```ts twoslash
 import { option as o, result as r } from '@moeru/results'
 // import * as o from '@moeru/results/option'
 // import * as r from '@moeru/results/result'
@@ -105,7 +105,9 @@ console.log(Object.keys(r))
 
 Extracted values or errors.
 
-```ts
+```ts twoslash
+import type { Option, Result } from '@moeru/results'
+
 import { option as o, ok, result as r, some } from '@moeru/results'
 
 o.extract(some('foo') as Option<string>) // string | undefined
@@ -116,7 +118,7 @@ r.extract(ok('bar') as Result<string, Error>) // string | Error
 
 Convert common types / function results to Option or Result.
 
-```ts
+```ts twoslash
 import { option as o, result as r } from '@moeru/results'
 
 o.from('foo' as 'foo' | undefined) // Option<'foo'>
