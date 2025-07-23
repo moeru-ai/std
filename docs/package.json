@@ -4,12 +4,30 @@
   "version": "0.1.0-beta.6",
   "private": true,
   "scripts": {
-    "build": "vitepress build",
-    "dev": "vitepress dev",
-    "preview": "vitepress preview"
+    "build": "next build --turbopack",
+    "dev": "next dev --turbo",
+    "postinstall": "fumadocs-mdx",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@orama/orama": "^3.1.11",
+    "fumadocs-core": "15.6.4",
+    "fumadocs-mdx": "11.6.11",
+    "fumadocs-twoslash": "^3.1.4",
+    "fumadocs-ui": "15.6.4",
+    "next": "15.4.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "twoslash": "^0.3.3"
   },
   "devDependencies": {
-    "@nolebase/vitepress-plugin-sidebar": "^2.18.0",
-    "vitepress": "2.0.0-alpha.5"
+    "@moeru/results": "workspace:^",
+    "@moeru/std": "workspace:^",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/mdx": "^2.0.13",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11"
   }
 }

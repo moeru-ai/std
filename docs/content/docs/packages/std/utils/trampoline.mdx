@@ -1,0 +1,36 @@
+---
+title: Trampoline
+description: Use recursion and avoid stack overflow.
+---
+
+## trampoline
+
+```ts twoslash
+import type { TrampolineFn } from '@moeru/std/trampoline'
+
+import { trampoline } from '@moeru/std/trampoline'
+
+const factorial = async (n: number, acc: number = 1): Promise<TrampolineFn<number>> =>
+  n <= 1
+    ? Promise.resolve(acc)
+    : async () => factorial(n - 1, n * acc)
+
+console.log(await trampoline(async () => factorial(5))) // 120
+```
+
+## trampolineSync
+
+`trampoline` that accept only sync functions.
+
+```ts twoslash
+import type { TrampolineSyncFn } from '@moeru/std/trampoline'
+
+import { trampolineSync } from '@moeru/std/trampoline'
+
+const factorial = (n: number, acc: number = 1): TrampolineSyncFn<number> =>
+  n <= 1
+    ? acc
+    : () => factorial(n - 1, n * acc)
+
+console.log(trampolineSync(() => factorial(5))) // 120
+```

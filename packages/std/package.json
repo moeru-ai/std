@@ -2,7 +2,7 @@
   "name": "@moeru/std",
   "type": "module",
   "version": "0.1.0-beta.6",
-  "description": "Standard TypeScript Library for Moeru AI.",
+  "description": "Runtime-agnostic TypeScript Utils for Moeru AI.",
   "author": "Moeru AI",
   "license": "MIT",
   "homepage": "https://std.moeru.ai",

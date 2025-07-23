@@ -1,0 +1,157 @@
+---
+title: Results
+description: Small and tree-shakeable Result/Option implementation.
+---
+
+## Option
+
+> compare with [Rust by Example](https://doc.rust-lang.org/rust-by-example/std/option.html)
+
+```ts twoslash
+import type { Option } from '@moeru/results'
+
+import { none, option as o, some } from '@moeru/results'
+
+const checkedDivision = (dividend: number, divisor: number): Option<number> =>
+  divisor === 0
+    ? none
+    : some(dividend / divisor)
+
+const tryDivision = (dividend: number, divisor: number) =>
+  o.match(
+    checkedDivision(dividend, divisor),
+    quotient => `${dividend} / ${divisor} = ${quotient}`,
+    () => { throw new Error(`${dividend} / ${divisor} failed!`) },
+  )
+
+const main = () => {
+  tryDivision(4, 2) // "4 / 2 = 2"
+  tryDivision(1, 0) // throw error
+
+  const optionalFloat = some(0)
+
+  console.log(`${optionalFloat} unwraps to ${o.unwrap(optionalFloat)}`)
+  console.log(`${none} unwraps to ${o.unwrap(none)}`) // throw error
+}
+```
+
+## Result
+
+> compare with [Rust by Example](https://doc.rust-lang.org/rust-by-example/std/result.html)
+
+```ts twoslash
+import type { Result } from '@moeru/results'
+
+import { err, ok, result as r } from '@moeru/results'
+
+enum MathError {
+  DivisionByZero = 'DivisionByZero',
+  NegativeSquareRoot = 'NegativeSquareRoot',
+  NonPositiveLogarithm = 'NonPositiveLogarithm',
+}
+
+type MathResult = Result<number, MathError>
+
+const div = (x: number, y: number): MathResult =>
+  y === 0
+    ? err(MathError.DivisionByZero)
+    : ok(x / y)
+
+const sqrt = (x: number): MathResult =>
+  x < 0
+    ? err(MathError.NegativeSquareRoot)
+    : ok(Math.sqrt(x))
+
+const ln = (x: number): MathResult =>
+  x <= 0
+    ? err(MathError.NonPositiveLogarithm)
+    : ok(Math.log(x))
+
+const op = (x: number, y: number): number =>
+  r.match(
+    div(x, y),
+    radio => r.match(
+      ln(radio),
+      ln => r.match(
+        sqrt(ln),
+        sqrt => sqrt,
+        (err) => { throw err },
+      ),
+      (err) => { throw err },
+    ),
+    (err) => { throw err },
+  )
+
+const main = () =>
+  console.log(op(1, 10))
+```
+
+## Methods
+
+Most of the methods are the same as in Rust.
+
+We provide different import points for Option and Result:
+
+```ts twoslash
+import { option as o, result as r } from '@moeru/results'
+// import * as o from '@moeru/results/option'
+// import * as r from '@moeru/results/result'
+
+console.log(Object.keys(o))
+console.log(Object.keys(r))
+```
+
+### extract
+
+Extracted values or errors.
+
+```ts twoslash
+import type { Option, Result } from '@moeru/results'
+
+import { option as o, ok, result as r, some } from '@moeru/results'
+
+o.extract(some('foo') as Option<string>) // string | undefined
+r.extract(ok('bar') as Result<string, Error>) // string | Error
+```
+
+### from
+
+Convert common types / function results to Option or Result.
+
+```ts twoslash
+import { option as o, result as r } from '@moeru/results'
+
+o.from('foo' as 'foo' | undefined) // Option<'foo'>
+
+export const tryParseURL = (url: string) =>
+  r.from(() => new URL(url)) // Result<string, Error>
+```
+
+### wrap
+
+You can achieve something like the question mark operator in Rust.
+
+Let's modify the Result Example above to use `wrap` / `unwrap` instead of `match`:
+
+```diff
+const op = (x: number, y: number): number =>
+  r.match(
+-   div(x, y),
+-   radio => r.match(
+-     ln(radio),
+-     ln => r.match(
+-       sqrt(ln),
+-       sqrt => sqrt,
+-       (err) => { throw err },
+-     ),
+-     (err) => { throw err },
+-   ),
++   r.wrap(() => {
++     let _ratio = unwrap(div(x, y))
++     let _ln = unwrap(ln(_ratio))
++     return sqrt(_ln)
++   }),
++   (value) => value,
+    (err) => { throw err },
+  )
+```

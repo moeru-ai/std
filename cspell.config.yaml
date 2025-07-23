@@ -6,14 +6,16 @@ words:
   - bumpp
   - denoland
   - ependencies
-  - foxts
   - eslintcache
+  - foxts
+  - fumadocs
   - importantimport
   - lume
   - lumeland
   - masknet
   - moeru
   - nolebase
+  - orama
   - oxlint
   - oxlintrc
   - pkgroll
@@ -21,6 +23,8 @@ words:
   - scule
   - sonarjs
   - sukka
+  - turbopack
+  - twoslash
   - unjs
   - vitepress
   - xsai
