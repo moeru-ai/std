@@ -26,6 +26,7 @@ dist-ssr
 docs/.next
 docs/.vercel
 docs/.source
+docs/out
 docs/next-env.d.ts
 
 coverage

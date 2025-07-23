@@ -56,6 +56,9 @@ importers:
 
   docs:
     dependencies:
+      '@orama/orama':
+        specifier: ^3.1.11
+        version: 3.1.11
       fumadocs-core:
         specifier: 15.6.4
         version: 15.6.4(@types/react@19.1.8)(algoliasearch@5.23.4)(next@15.4.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
