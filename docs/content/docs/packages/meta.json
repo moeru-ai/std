@@ -1,5 +1,6 @@
 {
   "title": "Packages",
+  "icon": "Package",
   "root": true,
   "pages": [
     "---std---",
