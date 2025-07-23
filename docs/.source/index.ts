@@ -1,0 +1,7 @@
+// @ts-nocheck -- skip type checking
+import * as docs_2 from "../content/docs/packages/results/overview.mdx?collection=docs&hash=1752926692610"
+import * as docs_1 from "../content/docs/packages/std/overview.mdx?collection=docs&hash=1752926692610"
+import * as docs_0 from "../content/docs/packages/eslint-config/overview.mdx?collection=docs&hash=1752926692610"
+import { _runtime } from "fumadocs-mdx"
+import * as _source from "../source.config"
+export const docs = _runtime.docs<typeof _source.docs>([{ info: {"path":"packages/eslint-config/overview.mdx","absolutePath":"/home/kwa/Documents/GitHub/std/docs/content/docs/packages/eslint-config/overview.mdx"}, data: docs_0 }, { info: {"path":"packages/std/overview.mdx","absolutePath":"/home/kwa/Documents/GitHub/std/docs/content/docs/packages/std/overview.mdx"}, data: docs_1 }, { info: {"path":"packages/results/overview.mdx","absolutePath":"/home/kwa/Documents/GitHub/std/docs/content/docs/packages/results/overview.mdx"}, data: docs_2 }], [{"info":{"path":"packages/meta.json","absolutePath":"/home/kwa/Documents/GitHub/std/docs/content/docs/packages/meta.json"},"data":{"title":"Packages","pages":["---Std Lib---","...std","---Results---","...results","---ESLint Config---","...eslint-config"],"root":true}}])

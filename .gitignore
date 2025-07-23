@@ -23,7 +23,8 @@ dist-ssr
 
 .eslintcache
 
-docs/.vitepress/cache
-docs/.vitepress/dist
+docs/.next
+docs/.vercel
+docs/next-env.d.ts
 
 coverage

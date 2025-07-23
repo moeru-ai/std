@@ -1,0 +1,12 @@
+{
+  "title": "Packages",
+  "root": true,
+  "pages": [
+    "---Std Lib---",
+    "...std",
+    "---Results---",
+    "...results",
+    "---ESLint Config---",
+    "...eslint-config"
+  ]
+}
