@@ -6,8 +6,8 @@
     "std/index",
     "...std",
     "---results---",
-    "...results",
+    "results/index",
     "---eslint-config---",
-    "...eslint-config"
+    "eslint-config/index"
   ]
 }

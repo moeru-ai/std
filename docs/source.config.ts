@@ -6,6 +6,7 @@ import {
   metaSchema,
 } from 'fumadocs-mdx/config'
 import { transformerTwoslash } from 'fumadocs-twoslash'
+import { createFileSystemTypesCache } from 'fumadocs-twoslash/cache-fs'
 
 // You can customize Zod schemas for frontmatter and `meta.json` here
 // see https://fumadocs.vercel.app/docs/mdx/collections#define-docs
@@ -28,7 +29,9 @@ export default defineConfig({
       },
       transformers: [
         ...(rehypeCodeDefaultOptions.transformers ?? []),
-        transformerTwoslash(),
+        transformerTwoslash({
+          typesCache: createFileSystemTypesCache(),
+        }),
       ],
     },
   },
