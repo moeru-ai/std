@@ -19,8 +19,11 @@ export const generateMetadata = async (props: {
   if (!page)
     notFound()
 
+  const image = ['/docs-og', ...params.slug!, 'image.png'].join('/')
+
   return {
     description: page.data.description,
+    openGraph: { images: image },
     title: page.data.title,
   }
 }
