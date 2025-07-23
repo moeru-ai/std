@@ -2,11 +2,12 @@
   "title": "Packages",
   "root": true,
   "pages": [
-    "---Std Lib---",
+    "---std---",
+    "std/index",
     "...std",
-    "---Results---",
+    "---results---",
     "...results",
-    "---ESLint Config---",
+    "---eslint-config---",
     "...eslint-config"
   ]
 }
