@@ -1,0 +1,34 @@
+---
+title: Base64
+description: Encode/decode Base64 or Base64URL.
+---
+
+## encodeBase64
+
+```ts twoslash
+import { encodeBase64 } from '@moeru/std/base64'
+
+// replaces btoa()
+const encodedData = encodeBase64('Hello, world')
+```
+
+## decodeBase64
+
+```ts twoslash
+import { decodeBase64, encodeBase64 } from '@moeru/std/base64'
+
+const encodedData = encodeBase64('Hello, world')
+
+const decodedData = decodeBase64(encodedData)
+
+const textDecoder = new TextDecoder()
+console.log(textDecoder.decode(decodedData))
+```
+
+## encodeBase64Url
+
+Base64URL version of `encodeBase64`.
+
+## decodeBase64Url
+
+Base64URL version of `decodeBase64`.
