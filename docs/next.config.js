@@ -6,12 +6,6 @@ const withMDX = createMDX()
 const config = {
   output: 'export',
   reactStrictMode: true,
-  rewrites: () => [
-    {
-      destination: '/llms.mdx/:path*',
-      source: '/docs/:path*.mdx',
-    },
-  ],
   serverExternalPackages: ['typescript', 'twoslash'],
 }
 
