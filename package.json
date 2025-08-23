@@ -10,7 +10,7 @@
     "bump": "bumpp",
     "dev": "pnpm -rF @moeru/std-docs dev",
     "lint": "moeru-lint --flag unstable_native_nodejs_ts_config",
-    "postinstall": "pnpm build",
+    "postinstall": "pnpm -rF @moeru/eslint-config build",
     "test": "pnpm -r test"
   },
   "devDependencies": {
