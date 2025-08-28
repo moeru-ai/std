@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0-beta.8",
   "private": true,
-  "packageManager": "pnpm@10.9.0",
+  "packageManager": "pnpm@10.15.0",
   "scripts": {
     "build": "pnpm -r build",
     "build:packages": "pnpm -rF \"./packages/*\" build",
@@ -14,20 +14,20 @@
     "test": "pnpm -r test"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.17.0",
+    "@antfu/eslint-config": "^5.2.1",
     "@importantimport/tsconfig": "1.0.0-beta.2",
     "@moeru/eslint-config": "workspace:^",
     "@moeru/tsconfig": "workspace:^",
-    "@types/node": "^24.0.15",
+    "@types/node": "^24.3.0",
     "@vitest/coverage-v8": "^3.2.4",
     "@vitest/ui": "^3.2.4",
-    "bumpp": "^10.2.0",
-    "eslint": "^9.31.0",
-    "eslint-plugin-oxlint": "^1.7.0",
-    "jiti": "^2.4.2",
-    "oxlint": "^1.7.0",
-    "pkgroll": "^2.14.3",
-    "tsx": "^4.20.3",
+    "bumpp": "^10.2.3",
+    "eslint": "^9.34.0",
+    "eslint-plugin-oxlint": "^1.13.0",
+    "jiti": "^2.5.1",
+    "oxlint": "^1.13.0",
+    "pkgroll": "^2.15.3",
+    "tsx": "^4.20.5",
     "vitest": "^3.2.4"
   }
 }
