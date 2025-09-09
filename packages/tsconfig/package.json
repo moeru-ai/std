@@ -15,6 +15,7 @@
   "sideEffects": false,
   "exports": {
     ".": "./tsconfig.json",
+    "./node.json": "./node.json",
     "./tsconfig.json": "./tsconfig.json",
     "./tsconfig.node.json": "./tsconfig.node.json",
     "./package.json": "./package.json"
