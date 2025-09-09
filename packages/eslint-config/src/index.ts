@@ -4,6 +4,7 @@ import antfu, { isPackageInScope } from '@antfu/eslint-config'
 import { merge } from '@moeru/std/merge'
 
 import { deMorgan } from './configs/de-morgan'
+import { depend } from './configs/depend'
 import { ignores } from './configs/ignores'
 import { masknet } from './configs/masknet'
 import { oxlint } from './configs/oxlint'
@@ -34,6 +35,7 @@ export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedF
 
   const results: Awaitable<TypedFlatConfigItem[]>[] = [
     deMorgan(),
+    depend(),
     ignores(),
     sortPackageJsonWithScripts(),
   ]

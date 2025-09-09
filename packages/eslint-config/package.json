@@ -47,6 +47,7 @@
     "@moeru/std": "workspace:^",
     "eslint-flat-config-utils": "catalog:",
     "eslint-plugin-de-morgan": "catalog:",
+    "eslint-plugin-depend": "catalog:",
     "eslint-plugin-perfectionist": "catalog:",
     "eslint-plugin-prefer-arrow": "catalog:",
     "eslint-plugin-sonarjs": "catalog:"
