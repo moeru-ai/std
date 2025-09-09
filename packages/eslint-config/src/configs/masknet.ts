@@ -53,7 +53,7 @@ export const masknet = (options: MoeruOptions): TypedFlatConfigItem[] => [
       '@masknet/type-no-const-enum': 'error',
       // '@masknet/type-no-empty-literal': 'error',
       '@masknet/type-no-force-cast-via-top-type': 'error',
-      '@masknet/type-no-instanceof-wrapper': 'error',
+      // '@masknet/type-no-instanceof-wrapper': 'error',
       '@masknet/type-no-number-constructor': 'error',
       '@masknet/type-no-wrapper-type-reference': 'error',
       '@masknet/type-prefer-return-type-annotation': 'warn',

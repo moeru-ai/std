@@ -4,7 +4,7 @@ export const trampoline = async <T>(fn: () => Promise<TrampolineFn<T>> | Trampol
   let result = await fn()
 
   // make ts happy
-  // eslint-disable-next-line @masknet/type-no-instanceof-wrapper, unicorn/no-instanceof-builtins
+  // eslint-disable-next-line unicorn/no-instanceof-builtins
   while (result instanceof Function)
     result = await result()
 
@@ -17,7 +17,7 @@ export const trampolineSync = <T>(fn: () => TrampolineSyncFn<T>): T => {
   let result = fn()
 
   // make ts happy
-  // eslint-disable-next-line @masknet/type-no-instanceof-wrapper, unicorn/no-instanceof-builtins
+  // eslint-disable-next-line unicorn/no-instanceof-builtins
   while (result instanceof Function)
     result = result()
 
