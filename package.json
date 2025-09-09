@@ -14,7 +14,6 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.1",
-    "@importantimport/tsconfig": "1.0.0-beta.2",
     "@moeru/eslint-config": "workspace:^",
     "@moeru/tsconfig": "workspace:^",
     "@types/node": "^24.3.0",
