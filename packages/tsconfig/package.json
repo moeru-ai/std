@@ -1,7 +1,7 @@
 {
   "name": "@moeru/tsconfig",
   "type": "module",
-  "version": "0.1.0-beta.9",
+  "version": "0.1.0-beta.10",
   "description": "TypeScript Configuration for Moeru AI.",
   "author": "Moeru AI",
   "license": "MIT",
