@@ -1,12 +1,9 @@
 #!/usr/bin/env node
-/* eslint-disable sonarjs/no-os-command-from-path */
-/* eslint-disable no-console */
-/* eslint-disable @masknet/no-top-level */
 
 import { spawn } from 'node:child_process'
 import { parseArgs } from 'node:util'
 
-import { version } from '../../package.json'
+import pkg from '../package.json' with { type: 'json' }
 
 const { positionals, values } = parseArgs({
   allowPositionals: true,
@@ -51,7 +48,7 @@ const { positionals, values } = parseArgs({
 })
 
 if (values.version) {
-  console.info(version)
+  console.info(pkg.version)
 }
 else if (values.help) {
   console.info('Usage: moeru-lint [--fix] [--flag <flag>]')

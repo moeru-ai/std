@@ -19,7 +19,6 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - run: pnpm install
-      - run: pnpm install-cli
       - run: pnpm lint
       - run: pnpm test
       - run: pnpm build
