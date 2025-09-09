@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { spawn } from 'node:child_process'
+import { env } from 'node:process'
 import { parseArgs } from 'node:util'
 
 import pkg from '../package.json' with { type: 'json' }
@@ -60,17 +61,20 @@ else {
   const fixDangerously = values['fix-dangerously'] ? '--fix-dangerously' : ''
   const fixSuggestions = values['fix-suggestions'] ? '--fix-suggestions' : ''
   const cache = values['no-cache'] ? '' : '--cache'
-  const flag = values.flag?.map(flag => `--flag ${flag}`).join(' ') ?? ''
 
-  const oxcArgs = [fix, fixDangerously, fixSuggestions, path]
+  const oxcArgs = [fix, fixDangerously, fixSuggestions, path].filter(v => v.length > 0)
   // eslint-disable-next-line sonarjs/no-nested-template-literals
   console.info(`moeru-lint: executing oxlint... ${values.debug ? `(${oxcArgs.join(' ')})` : ''}\n`)
   const oxlint = spawn('oxlint', oxcArgs, { stdio: 'inherit' })
 
   oxlint.on('close', () => {
-    const eslintArgs = [cache, fix, flag, path]
+    const eslintArgs = [fix, cache, path].filter(v => v.length > 0)
+    const eslintFlags = values.flag?.join(',')
     // eslint-disable-next-line sonarjs/no-nested-template-literals
-    console.info(`\nmoeru-lint: executing eslint... ${values.debug ? `(${eslintArgs.join(' ')})` : ''}\n`)
-    spawn('eslint', [eslintArgs.join(' ')], { stdio: 'inherit' })
+    console.info(`\nmoeru-lint: executing eslint... ${values.debug ? `(${eslintArgs.join(' ')}${eslintFlags ? ` / flags: ${eslintFlags}` : ''})` : ''}\n`)
+    spawn('eslint', eslintArgs, { stdio: 'inherit', env: {
+      ...env,
+      ESLINT_FLAGS: eslintFlags,
+    } })
   })
 }
