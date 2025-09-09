@@ -23,10 +23,11 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "moeru-lint": "./dist/bin/moeru-lint.js"
+    "moeru-lint": "./src/moeru-lint.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/moeru-lint.js"
   ],
   "scripts": {
     "build": "pkgroll"

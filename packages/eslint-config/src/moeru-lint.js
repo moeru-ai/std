@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 /* eslint-disable sonarjs/no-os-command-from-path */
 /* eslint-disable no-console */
-/* eslint-disable @masknet/no-top-level */
 
 import { spawn } from 'node:child_process'
 import { parseArgs } from 'node:util'
 
-import { version } from '../../package.json'
+import { version } from '../package.json'
 
 const { positionals, values } = parseArgs({
   allowPositionals: true,

@@ -9,7 +9,6 @@
     "build:packages": "pnpm -rF \"./packages/*\" build",
     "bump": "bumpp",
     "dev": "pnpm -rF @moeru/std-docs dev",
-    "install-cli": "pnpm -rF @moeru/eslint-config build && pnpm i",
     "lint": "moeru-lint --flag unstable_native_nodejs_ts_config",
     "test": "pnpm -r test"
   },
