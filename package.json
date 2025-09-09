@@ -13,17 +13,17 @@
     "test": "pnpm -r test"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^5.2.1",
+    "@antfu/eslint-config": "^5.3.0",
     "@moeru/eslint-config": "workspace:^",
     "@moeru/tsconfig": "workspace:^",
-    "@types/node": "^24.3.0",
+    "@types/node": "^24.3.1",
     "@vitest/coverage-v8": "^3.2.4",
     "@vitest/ui": "^3.2.4",
     "bumpp": "^10.2.3",
-    "eslint": "^9.34.0",
-    "eslint-plugin-oxlint": "^1.13.0",
+    "eslint": "^9.35.0",
+    "eslint-plugin-oxlint": "^1.14.0",
     "jiti": "^2.5.1",
-    "oxlint": "^1.13.0",
+    "oxlint": "^1.14.0",
     "pkgroll": "^2.15.3",
     "tsx": "^4.20.5",
     "vitest": "^3.2.4"
