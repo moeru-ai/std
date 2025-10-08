@@ -84,3 +84,21 @@ You can also use the `moeru-lint` script to simplify setup:
 ```
 
 `moeru-lint` enables [ESLint Caching](https://eslint.org/docs/latest/use/command-line-interface#caching) by default to speed things up, you can disable it with `--no-cache`.
+
+## Progressive Migration
+
+You may only want to enable some plugins initially, or progressively enable the remaining ones later.
+
+You can refer to the following example to disable the plugin:
+
+```ts
+import { defineConfig } from '@moeru/eslint-config'
+
+export default defineConfig({
+  masknet: false,
+  perfectionist: false,
+  preferArrow: false,
+  sonarjs: false,
+  ...antfuOptions,
+})
+```
