@@ -37,8 +37,10 @@ export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedF
     deMorgan(),
     depend(),
     ignores(),
-    sortPackageJsonWithScripts(),
   ]
+
+  if (options.jsonc !== false)
+    results.push(sortPackageJsonWithScripts())
 
   if (options.masknet)
     results.push(masknet(options))
