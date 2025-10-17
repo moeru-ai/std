@@ -12,12 +12,23 @@ interface WithRetryOptions {
   retryCount: number
   /** @default 500 */
   retryDelay: number
+  /**
+   * The exponential factor to use.
+   * @default 2
+   */
+  retryDelayFactor: number
+  /**
+   * enable exponential backoff when not undefined.
+   * @default undefined
+   */
+  retryDelayMax?: number
 }
 
 const defaults: WithRetryOptions = {
   retry: 3,
   retryCount: 0,
   retryDelay: 500,
+  retryDelayFactor: 2
 }
 
 /**
@@ -25,8 +36,8 @@ const defaults: WithRetryOptions = {
  *
  * @returns A wrapped function with the same signature as func
  */
-export const withRetry = <A, R>(func: (...args: A[]) => Promise<R> | R, options?: Partial<WithRetryOptions>): (...args: A[]) => Promise<R> | R => {
-  const { onError, retry, retryCount, retryDelay } = merge(defaults, options)
+export const withRetry = <A, R>(func: (...args: A[]) => Promise<R> | R, options?: Partial<WithRetryOptions>): (...args: A[]) => Promise<R> => {
+  const { onError, retry, retryCount, retryDelay, retryDelayFactor, retryDelayMax } = merge(defaults, options)
 
   const withRetryInternal = async (...args: A[]): Promise<TrampolineFn<R>> => {
     try {
@@ -35,12 +46,16 @@ export const withRetry = <A, R>(func: (...args: A[]) => Promise<R> | R, options?
     catch (err) {
       onError?.(err)
 
-      if (retryCount < retry) {
-        await sleep(retryDelay)
-        return async () => withRetry(func, { onError, retry, retryCount: retryCount + 1, retryDelay })(...args)
+      if (retryCount >= retry) {
+        throw err
       }
       else {
-        throw err
+        await sleep(
+          retryDelayMax == null
+            ? retryDelay
+            : Math.min(retryDelay * Math.pow(retryDelayFactor, retryCount), retryDelayMax)
+        )
+        return async () => withRetry(func, { onError, retry, retryCount: retryCount + 1, retryDelay })(...args)
       }
     }
   }
