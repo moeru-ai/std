@@ -1,7 +1,7 @@
 {
   "name": "@moeru/std-docs",
   "type": "module",
-  "version": "0.1.0-beta.11",
+  "version": "0.1.0-beta.12",
   "private": true,
   "scripts": {
     "build": "next build --turbopack",
