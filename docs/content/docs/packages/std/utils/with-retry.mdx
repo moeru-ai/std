@@ -1,0 +1,50 @@
+---
+title: With Retry
+description: Simple retry wrapper with exponential backoff.
+---
+
+## withRetry
+
+```ts twoslash
+import { withRetry } from '@moeru/std/with-retry'
+
+const run = async () =>
+  fetch('https://example.com')
+    .then(res => {
+      if (!res.ok)
+        throw new Error(res.statusText)
+      else
+        return res.text()
+    })
+
+const runWithRetry = withRetry(run, { retry: 5 })
+
+console.log(await runWithRetry())
+```
+
+### exponential backoff
+
+```ts twoslash
+import { withRetry } from '@moeru/std/with-retry'
+
+const run = async () =>
+  fetch('https://example.com')
+    .then(res => {
+      if (!res.ok)
+        throw new Error(res.statusText)
+      else
+        return res.text()
+    })
+
+const runWithRetry = withRetry(run, {
+  retry: 5,
+  retryDelayFactor: 2, // default value // [!code highlight]
+  retryDelayMax: 60_000, // enable exponential backoff // [!code highlight]
+})
+
+console.log(await runWithRetry())
+```
+
+## Remarks
+
+If you need more features (such as jitter, signal), you can try [`foxts/async-retry`](https://github.com/SukkaW/foxts).
