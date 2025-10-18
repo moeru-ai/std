@@ -19,6 +19,7 @@ export interface MoeruOptions extends AntfuOptions {
   perfectionist: boolean
   preferArrow: boolean
   sonarjs: boolean
+  sortPackageJsonScripts: boolean
 }
 
 const defaults: MoeruOptions = {
@@ -27,6 +28,7 @@ const defaults: MoeruOptions = {
   perfectionist: true,
   preferArrow: true,
   sonarjs: true,
+  sortPackageJsonScripts: true,
   typescript: { tsconfigPath: './tsconfig.json' },
 }
 
@@ -39,7 +41,7 @@ export const moeru = (userOptions: Partial<MoeruOptions> = {}): Awaitable<TypedF
     ignores(),
   ]
 
-  if (options.jsonc !== false)
+  if (options.jsonc !== false && options.sortPackageJsonScripts !== false)
     results.push(sortPackageJsonWithScripts())
 
   if (options.masknet)
