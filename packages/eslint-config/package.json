@@ -50,7 +50,8 @@
     "eslint-plugin-depend": "catalog:",
     "eslint-plugin-perfectionist": "catalog:",
     "eslint-plugin-prefer-arrow": "catalog:",
-    "eslint-plugin-sonarjs": "catalog:"
+    "eslint-plugin-sonarjs": "catalog:",
+    "tinyexec": "catalog:"
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:",
