@@ -37,13 +37,11 @@ describe('@moeru/results/result', () => {
         div(x, y),
         radio => match(
           ln(radio),
-          // eslint-disable-next-line sonarjs/no-nested-functions
           ln => match(
             sqrt(ln),
             sqrt => sqrt,
             (err) => { throw err },
           ),
-          // eslint-disable-next-line sonarjs/no-nested-functions
           (err) => { throw err },
         ),
         (err) => { throw err },

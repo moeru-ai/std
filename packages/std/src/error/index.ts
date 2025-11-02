@@ -42,7 +42,6 @@ export const errorCauseFrom = <C>(err: null | undefined | unknown): C | undefine
   if (!isErrorLike(err) || err.cause == null)
     return undefined
 
-  // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
   return err.cause as C | undefined
 }
 

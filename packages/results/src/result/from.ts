@@ -8,7 +8,6 @@ export const from = <T, E = Error>(cb: () => T): Result<T, E> => {
     return ok(cb())
   }
   catch (e) {
-    // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
     return err(e) as Result<T, E>
   }
 }

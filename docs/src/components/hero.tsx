@@ -1,4 +1,3 @@
-// eslint-disable-next-line @masknet/no-top-level
 'use client'
 
 import { motion as m } from 'motion/react'

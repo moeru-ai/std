@@ -9,10 +9,9 @@ export const wrap = <T>(cb: () => Option<T>): Option<T> => {
   }
   catch (error) {
     if (isOption(error))
-      // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
       return error as Option<T>
-
-    throw error
+    else
+      throw error
   }
 }
 
@@ -23,9 +22,8 @@ export const wrapAsync = async <T>(cb: () => Promise<Option<T>>): Promise<Option
   }
   catch (error) {
     if (isOption(error))
-      // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
       return error as Option<T>
-
-    throw error
+    else
+      throw error
   }
 }

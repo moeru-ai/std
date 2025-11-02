@@ -9,10 +9,9 @@ export const wrap = <T, E>(cb: () => Result<T, E>): Result<T, E> => {
   }
   catch (error) {
     if (isResult(error))
-      // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
       return error as Result<T, E>
-
-    throw error
+    else
+      throw error
   }
 }
 
@@ -23,9 +22,8 @@ export const wrapAsync = async <T, E>(cb: () => Promise<Result<T, E>>): Promise<
   }
   catch (error) {
     if (isResult(error))
-      // eslint-disable-next-line @masknet/type-prefer-return-type-annotation
       return error as Result<T, E>
-
-    throw error
+    else
+      throw error
   }
 }

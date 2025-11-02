@@ -5,7 +5,6 @@ export const setClockInterval = (func: (...args: any[]) => any, interval: number
   let tick: number
   let clockTimer: ReturnType<typeof setTimeout>
 
-  // eslint-disable-next-line sonarjs/pseudo-random
   const timerId = Math.floor(Math.random() * 1e10)
 
   const recurFunc = () => {
