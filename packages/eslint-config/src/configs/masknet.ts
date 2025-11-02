@@ -4,7 +4,7 @@ import type { MoeruOptions } from '..'
 
 import masknetPlugin from '@masknet/eslint-plugin'
 
-import { GLOB_ASTRO_TS, GLOB_MARKDOWN_CODE, GLOB_SRC_EXT, GLOB_TESTS, GLOB_TS, GLOB_TSX } from '@antfu/eslint-config'
+import { GLOB_ASTRO_TS, GLOB_JSX, GLOB_MARKDOWN_CODE, GLOB_SRC_EXT, GLOB_TESTS, GLOB_TS, GLOB_TSX } from '@antfu/eslint-config'
 
 export const masknet = (options: MoeruOptions): TypedFlatConfigItem[] => [
   {
@@ -57,9 +57,11 @@ export const masknet = (options: MoeruOptions): TypedFlatConfigItem[] => [
       // '@masknet/type-no-instanceof-wrapper': 'error',
       '@masknet/type-no-number-constructor': 'error',
       '@masknet/type-no-wrapper-type-reference': 'error',
-      '@masknet/type-prefer-return-type-annotation': 'warn',
+      // disable
+      // '@masknet/type-prefer-return-type-annotation': 'warn',
       '@masknet/unicode-no-bidi': 'error',
       '@masknet/unicode-no-invisible': 'error',
+      // disable
       // '@masknet/unicode-specific-set': 'error',
       'unicorn/no-instanceof-array': 'off',
     },
@@ -68,6 +70,8 @@ export const masknet = (options: MoeruOptions): TypedFlatConfigItem[] => [
     files: [
       ...GLOB_TESTS,
       GLOB_MARKDOWN_CODE,
+      GLOB_JSX,
+      GLOB_TSX,
       `**/scripts/*.${GLOB_SRC_EXT}`,
     ],
     rules: {
