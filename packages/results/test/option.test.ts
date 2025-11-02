@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest'
-
 import type { Option } from '../src'
+
+import { describe, expect, it } from 'vitest'
 
 import { none, some } from '../src'
 import { match, unwrap } from '../src/option'

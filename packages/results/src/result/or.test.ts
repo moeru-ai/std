@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest'
-
 import type { Result } from '../core'
+
+import { describe, expect, it } from 'vitest'
 
 import { err, ok } from '../core'
 import { or, orElse } from './or'

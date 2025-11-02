@@ -1,11 +1,12 @@
 import type { InferPageType } from 'fumadocs-core/source'
 
-import { remarkInclude } from 'fumadocs-mdx/config'
-import { remark } from 'remark'
+import type { source } from '@/lib/source'
+
 import remarkGfm from 'remark-gfm'
 import remarkMdx from 'remark-mdx'
 
-import type { source } from '@/lib/source'
+import { remarkInclude } from 'fumadocs-mdx/config'
+import { remark } from 'remark'
 
 const processor = remark()
   .use(remarkMdx)

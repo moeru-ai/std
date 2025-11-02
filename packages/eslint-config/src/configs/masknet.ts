@@ -1,9 +1,10 @@
 import type { TypedFlatConfigItem } from '@antfu/eslint-config'
 
-import { GLOB_ASTRO_TS, GLOB_MARKDOWN_CODE, GLOB_SRC_EXT, GLOB_TESTS, GLOB_TS, GLOB_TSX } from '@antfu/eslint-config'
+import type { MoeruOptions } from '..'
+
 import masknetPlugin from '@masknet/eslint-plugin'
 
-import type { MoeruOptions } from '..'
+import { GLOB_ASTRO_TS, GLOB_MARKDOWN_CODE, GLOB_SRC_EXT, GLOB_TESTS, GLOB_TS, GLOB_TSX } from '@antfu/eslint-config'
 
 export const masknet = (options: MoeruOptions): TypedFlatConfigItem[] => [
   {

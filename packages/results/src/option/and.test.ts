@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest'
-
 import type { Option } from '../core'
+
+import { describe, expect, it } from 'vitest'
 
 import { none, some } from '../core'
 import { and, andThen } from './and'

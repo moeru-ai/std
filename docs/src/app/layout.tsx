@@ -1,10 +1,11 @@
-import '@/app/global.css'
 import type { PropsWithChildren } from 'react'
 
 import { RootProvider } from 'fumadocs-ui/provider'
 import { Inter } from 'next/font/google'
 
 import { SearchDialog } from '@/components/search'
+
+import '@/app/global.css'
 
 const inter = Inter({
   subsets: ['latin'],

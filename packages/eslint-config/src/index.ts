@@ -1,6 +1,7 @@
 import type { OptionsConfig as AntfuOptions, Awaitable, TypedFlatConfigItem } from '@antfu/eslint-config'
 
 import antfu, { isPackageInScope } from '@antfu/eslint-config'
+
 import { merge } from '@moeru/std/merge'
 
 import { deMorgan } from './configs/de-morgan'
