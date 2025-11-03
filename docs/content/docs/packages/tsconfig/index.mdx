@@ -34,3 +34,16 @@ npm i -D @moeru/tsconfig
   "include": ["*.config.ts", "scripts"]
 }
 ```
+
+## Library
+
+For libraries that doesn't use DOM,
+you can import from `@moeru/tsconfig/lib.json`.
+
+```jsonc
+// tsconfig.app.json
+{
+  "extends": "@moeru/tsconfig/lib.json",
+  "include": ["src"]
+}
+```

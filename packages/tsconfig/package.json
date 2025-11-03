@@ -15,8 +15,10 @@
   "sideEffects": false,
   "exports": {
     ".": "./tsconfig.json",
+    "./lib.json": "./lib.json",
     "./node.json": "./node.json",
     "./tsconfig.json": "./tsconfig.json",
+    "./tsconfig.lib.json": "./tsconfig.lib.json",
     "./tsconfig.node.json": "./tsconfig.node.json",
     "./package.json": "./package.json"
   }
