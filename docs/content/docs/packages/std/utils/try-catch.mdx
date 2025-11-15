@@ -1,0 +1,43 @@
+---
+title: Try Catch
+description: Convert throwing functions into data/error objects.
+---
+
+## tryCatch
+
+```ts twoslash
+import { tryCatch } from '@moeru/std/try-catch'
+
+const parseJSON = (text: string) => JSON.parse(text)
+
+const { data, error } = tryCatch(() => parseJSON('{"hello":"world"}'))
+
+if (error)
+  console.error('Failed to parse JSON', error)
+else
+  console.log(data.hello)
+```
+
+## tryCatchAsync
+
+```ts twoslash
+import { tryCatchAsync } from '@moeru/std/try-catch'
+
+const fetchJSON = async (url: string) => {
+  const res = await fetch(url)
+  if (!res.ok)
+    throw new Error(res.statusText)
+  return res.json()
+}
+
+const { data, error } = await tryCatchAsync(() => fetchJSON('https://example.com/data.json'))
+
+if (error)
+  console.error('Request failed', error)
+else
+  console.log(data)
+```
+
+## Remarks
+
+This wrapper keeps your call sites non-throwing and therefore easier to compose. It is a lightweight alternative to result libraries—if you need richer ergonomics (matching, chaining, etc.) consider adopting a full Result/Try monad.
