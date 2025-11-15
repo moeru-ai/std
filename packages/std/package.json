@@ -22,6 +22,7 @@
     "./set-interval": "./src/set-interval/index.ts",
     "./sleep": "./src/sleep/index.ts",
     "./trampoline": "./src/trampoline/index.ts",
+    "./try-catch": "./src/try-catch/index.ts",
     "./with-retry": "./src/with-retry/index.ts"
   },
   "files": [
