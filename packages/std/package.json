@@ -62,6 +62,10 @@
         "types": "./dist/trampoline/index.d.ts",
         "default": "./dist/trampoline/index.js"
       },
+      "./try-catch": {
+        "types": "./dist/try-catch/index.d.ts",
+        "default": "./dist/try-catch/index.js"
+      },
       "./with-retry": {
         "types": "./dist/with-retry/index.d.ts",
         "default": "./dist/with-retry/index.js"
