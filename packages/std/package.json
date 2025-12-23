@@ -1,7 +1,7 @@
 {
   "name": "@moeru/std",
   "type": "module",
-  "version": "0.1.0-beta.13",
+  "version": "0.1.0-beta.14",
   "description": "Runtime-agnostic TypeScript Utils for Moeru AI.",
   "author": "Moeru AI",
   "license": "MIT",
