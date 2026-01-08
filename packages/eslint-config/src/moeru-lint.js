@@ -56,15 +56,15 @@ else if (values.help) {
   console.info('Usage: moeru-lint [--fix] [--flag <flag>]')
 }
 else {
-  const path = positionals.at(0) ?? '.'
+  const paths = positionals.length > 0 ? positionals : ['.']
 
   const fix = values.fix ? '--fix' : ''
   const fixDangerously = values['fix-dangerously'] ? '--fix-dangerously' : ''
   const fixSuggestions = values['fix-suggestions'] ? '--fix-suggestions' : ''
   const cache = values['no-cache'] ? '' : '--cache'
 
-  const oxcArgs = [fix, fixDangerously, fixSuggestions, path].filter(v => v.length > 0)
-  const eslintArgs = [fix, cache, path].filter(v => v.length > 0)
+  const oxcArgs = [fix, fixDangerously, fixSuggestions, ...paths].filter(v => v.length > 0)
+  const eslintArgs = [fix, cache, ...paths].filter(v => v.length > 0)
   const eslintFlags = values.flag?.join(',')
 
   if (values.debug) {
