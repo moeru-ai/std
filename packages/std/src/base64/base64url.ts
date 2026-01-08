@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/deprecation */
 import { decodeBase64, encodeBase64 } from './base64'
 
 const addPaddingToBase64url = (b64url: string): string => {
