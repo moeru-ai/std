@@ -8,7 +8,8 @@ export const sonarjs = (): TypedFlatConfigItem[] => [{
     sonarjs: sonarjsPlugin,
   },
   rules: {
-    ...sonarjsPlugin.configs.recommended.rules,
+    // https://github.com/SonarSource/SonarJS/blob/master/packages/jsts/src/rules/README.md#for-eslint-9
+    ...(sonarjsPlugin.configs!.recommended as TypedFlatConfigItem).rules,
     'sonarjs/fixme-tag': 'warn',
     'sonarjs/no-commented-code': 'warn',
     // allow nested conditional

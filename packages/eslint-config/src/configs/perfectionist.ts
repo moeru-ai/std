@@ -34,7 +34,7 @@ export const perfectionist = (): TypedFlatConfigItem[] => [{
           'ts-equals-import',
           'unknown',
         ],
-        newlinesBetween: 'always',
+        newlinesBetween: 1,
         partitionByComment: true,
         type: 'natural',
       },
