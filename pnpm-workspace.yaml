@@ -2,6 +2,9 @@ shellEmulator: true
 
 trustPolicy: no-downgrade
 
+trustPolicyExclude:
+  - chokidar@4.0.3
+
 packages:
   - docs
   - packages/*
@@ -29,7 +32,7 @@ catalog:
   eslint-plugin-sonarjs: ^3.0.7
   fumadocs-core: 15.6.4
   fumadocs-mdx: 11.6.11
-  fumadocs-twoslash: ^3.1.13
+  fumadocs-twoslash: 3.1.10
   fumadocs-ui: 15.6.4
   lucide-react: ^0.564.0
   motion: ^12.34.0
