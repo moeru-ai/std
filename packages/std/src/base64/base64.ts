@@ -1,6 +1,10 @@
 import { base64abc } from './_base64abc'
 import { validateBinaryLike } from './_validate-binary-like'
 
+/**
+ * @deprecated use `Uint8Array.toBase64` instead.
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/toBase64}
+ */
 export const encodeBase64 = (data: ArrayBuffer | string | Uint8Array): string => {
   const uint8 = validateBinaryLike(data)
   let result = ''
@@ -35,6 +39,10 @@ export const encodeBase64 = (data: ArrayBuffer | string | Uint8Array): string =>
   return result
 }
 
+/**
+ * @deprecated use `Uint8Array.fromBase64` instead.
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array/fromBase64}
+ */
 export const decodeBase64 = (b64: string): Uint8Array => {
   // eslint-disable-next-line @masknet/no-builtin-base64
   const binString = atob(b64)
