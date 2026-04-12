@@ -1,8 +1,9 @@
-import type { TypedFlatConfigItem } from '@antfu/eslint-config'
+import { GLOB_SRC, type TypedFlatConfigItem } from '@antfu/eslint-config'
 
 import perfectionistPlugin from 'eslint-plugin-perfectionist'
 
 export const perfectionist = (): TypedFlatConfigItem[] => [{
+  files: [GLOB_SRC],
   name: 'moeru/perfectionist/rules',
   rules: {
     ...perfectionistPlugin.configs['recommended-natural'].rules,

@@ -1,8 +1,9 @@
-import type { TypedFlatConfigItem } from '@antfu/eslint-config'
+import { GLOB_SRC, type TypedFlatConfigItem } from '@antfu/eslint-config'
 
 import sonarjsPlugin from 'eslint-plugin-sonarjs'
 
 export const sonarjs = (): TypedFlatConfigItem[] => [{
+  files: [GLOB_SRC],
   name: 'moeru/sonarjs/setup',
   plugins: {
     sonarjs: sonarjsPlugin,
