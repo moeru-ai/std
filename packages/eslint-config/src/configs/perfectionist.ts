@@ -1,6 +1,8 @@
-import { GLOB_SRC, type TypedFlatConfigItem } from '@antfu/eslint-config'
+import type { TypedFlatConfigItem } from '@antfu/eslint-config'
 
 import perfectionistPlugin from 'eslint-plugin-perfectionist'
+
+import { GLOB_SRC } from '@antfu/eslint-config'
 
 export const perfectionist = (): TypedFlatConfigItem[] => [{
   files: [GLOB_SRC],

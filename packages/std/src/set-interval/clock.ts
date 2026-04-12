@@ -12,9 +12,7 @@ export const setClockInterval = (func: (...args: any[]) => any, interval: number
   const recurFunc = () => {
     func()
     const realExecuteTime = Date.now()
-    if (start == null) {
-      start = realExecuteTime
-    }
+    start ??= realExecuteTime
 
     tick = tick ?? start
     // Drift correction: keep long-term cadence close to target interval.

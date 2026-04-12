@@ -1,5 +1,7 @@
 import { decodeBase64, encodeBase64 } from './base64'
 
+const BASE64URL_REGEX = /^[-\w]*={0,2}$/
+
 const addPaddingToBase64url = (b64url: string): string => {
   if (b64url.length % 4 === 2)
     return `${b64url}==`
@@ -19,7 +21,7 @@ const convertBase64ToBase64url = (b64: string): string =>
     : b64.replace(/\+/g, '-').replace(/\//g, '_')
 
 const convertBase64urlToBase64 = (b64url: string): string => {
-  if (!/^[-\w]*={0,2}$/.test(b64url))
+  if (!BASE64URL_REGEX.test(b64url))
     throw new TypeError('Failed to decode base64url: invalid character')
 
   return addPaddingToBase64url(b64url).replace(/-/g, '+').replace(/_/g, '/')
