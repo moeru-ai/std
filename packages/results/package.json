@@ -2,6 +2,7 @@
   "name": "@moeru/results",
   "type": "module",
   "version": "0.1.0-beta.17",
+  "private": true,
   "description": "Small and tree-shakeable Result/Option implementation.",
   "author": "Moeru AI",
   "license": "MIT",
