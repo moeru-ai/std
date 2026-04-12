@@ -75,14 +75,29 @@ else {
     console.debug('')
   }
 
-  await x('oxlint', oxcArgs, { nodeOptions: { stdio: 'inherit' } })
-    .pipe('eslint', eslintArgs, {
-      nodeOptions: {
-        stdio: 'inherit',
-        env: {
-          ...env,
-          ESLINT_FLAGS: eslintFlags,
-        }
-      }
-    })
+  /** @param {Parameters<typeof import('tinyexec').x>} options */
+  const run = async (...options) => {
+    const result = await x(...options)
+
+    if (result.exitCode && result.exitCode !== 0) {
+      process.exitCode = result.exitCode
+      process.exit()
+    }
+  }
+
+  await run('oxlint', oxcArgs, {
+    nodeOptions: {
+      stdio: 'inherit',
+    },
+  })
+
+  await run('eslint', eslintArgs, {
+    nodeOptions: {
+      stdio: 'inherit',
+      env: {
+        ...env,
+        ESLINT_FLAGS: eslintFlags,
+      },
+    }
+  })
 }
