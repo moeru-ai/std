@@ -30,3 +30,4 @@ docs/out
 docs/next-env.d.ts
 
 coverage
+.codex
