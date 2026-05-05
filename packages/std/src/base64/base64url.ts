@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/deprecation */
 import { decodeBase64, encodeBase64 } from './base64'
 
 const BASE64URL_REGEX = /^[-\w]*={0,2}$/
