@@ -70,4 +70,5 @@ export const defineConfig = (userOptions: Partial<MoeruOptions> = {}, ...userCon
   return antfu(options, ...moeru(options), ...userConfigs ?? [])
 }
 
-export default defineConfig()
+const config: ReturnType<typeof antfu> = defineConfig()
+export default config
