@@ -63,7 +63,12 @@ else {
   const fixSuggestions = values['fix-suggestions'] ? '--fix-suggestions' : ''
   const cache = values['no-cache'] ? '' : '--cache'
 
-  const oxcArgs = [fix, fixDangerously, fixSuggestions, ...paths].filter(v => v.length > 0)
+  // NOTICE: since oxlint cannot handle unsupported file paths, if
+  // the committing files are all unsupported file paths (updating package.json, or flushing
+  // i18n, lock files), oxlint will exit with a non-zero exit code before eslint is executed.
+  //
+  // To avoid this, we add the `--no-error-on-unmatched-pattern` flag to oxlint.
+  const oxcArgs = ['--no-error-on-unmatched-pattern', fix, fixDangerously, fixSuggestions, ...paths].filter(v => v.length > 0)
   const eslintArgs = [fix, cache, ...paths].filter(v => v.length > 0)
   const eslintFlags = values.flag?.join(',')
 

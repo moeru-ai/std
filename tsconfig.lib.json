@@ -1,6 +1,9 @@
 {
   "extends": "@moeru/tsconfig",
   "compilerOptions": {
+    "types": [
+      "node"
+    ],
     "allowJs": true,
     "checkJs": true
   },
