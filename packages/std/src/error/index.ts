@@ -1,51 +1,51 @@
-/**
- * ErrorLike utility interface for containing error-like objects.
- */
-export type ErrorLike<C = unknown> = Nullable<Partial<Pick<Error, 'stack'>>> & Pick<Error, 'message' | 'name'> & { cause?: C }
-
-type Nullable<T> = {
-  [P in keyof T]: null | T[P]
+export interface ErrorLike {
+  cause?: unknown
+  message: string
+  name: string
+  stack?: null | string
 }
 
-export const isError = (err: null | undefined | unknown): err is Error =>
+export const isError = (err: unknown): err is Error =>
   err instanceof Error
 
-export const isErrorLike = <C = unknown>(err: null | undefined | unknown): err is ErrorLike<C> => {
-  if (err == null)
-    return false
-
-  if (err instanceof Error)
+export const isErrorLike = (err: unknown): err is ErrorLike => {
+  if (isError(err))
     return true
 
-  if (typeof err !== 'object')
+  if (err == null || typeof err !== 'object')
     return false
 
-  return 'name' in err && typeof err.name === 'string' && 'message' in err && typeof err.message === 'string'
+  return 'message' in err
+    && typeof err.message === 'string'
+    && 'name' in err
+    && typeof err.name === 'string'
 }
 
-export const errorNameFrom = (err: null | undefined | unknown): string | undefined =>
+export const errorNameFrom = (err: unknown): string | undefined =>
   isErrorLike(err)
     ? err.name
     : undefined
 
-export const errorMessageFrom = (err: null | undefined | unknown): string | undefined =>
+export const errorMessageFrom = (err: unknown): string | undefined =>
   isErrorLike(err)
     ? err.message
-    : undefined
+    : err == null
+      ? undefined
+      : String(err)
 
-export const errorStackFrom = (err: null | undefined | unknown): null | string | undefined =>
+export const errorStackFrom = (err: unknown): null | string | undefined =>
   isErrorLike(err)
     ? err.stack ?? new Error(errorMessageFrom(err)).stack
     : undefined
 
-export const errorCauseFrom = <C>(err: null | undefined | unknown): C | undefined => {
+export const errorCauseFrom = <C = unknown>(err: unknown): C | undefined => {
   if (!isErrorLike(err) || err.cause == null)
     return undefined
 
   return err.cause as C | undefined
 }
 
-export const isErrorEq = (src: null | undefined | unknown, target: null | undefined | unknown): boolean => {
+export const isErrorEq = (src: unknown, target: unknown): boolean => {
   if (!isErrorLike(src) || !isErrorLike(target))
     return false
 
@@ -53,9 +53,25 @@ export const isErrorEq = (src: null | undefined | unknown, target: null | undefi
     && errorMessageFrom(src) === errorMessageFrom(target)
 }
 
-export const isErrorTypeEq = (src: null | undefined | unknown, target: null | undefined | unknown): boolean => {
+export const isErrorTypeEq = (src: unknown, target: unknown): boolean => {
   if (!isErrorLike(src) || !isErrorLike(target))
     return false
 
   return errorNameFrom(src) === errorNameFrom(target)
+}
+
+export const toError = (err: unknown): Error => {
+  if (isError(err))
+    return err
+
+  if (!isErrorLike(err))
+    return new Error(errorMessageFrom(err) ?? 'Unknown error', { cause: err })
+
+  const error = new Error(err.message, { cause: err.cause })
+  error.name = err.name
+
+  if (typeof err.stack === 'string')
+    error.stack = err.stack
+
+  return error
 }
