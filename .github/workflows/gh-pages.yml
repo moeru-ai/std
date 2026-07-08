@@ -17,4 +17,4 @@ jobs:
     with:
       build: pnpm -rF @moeru/std-docs build
       path: docs/out
-      node-version: 24
+      node-version: latest
