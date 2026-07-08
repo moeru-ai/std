@@ -5,14 +5,28 @@ export interface ErrorLike {
   stack?: null | string
 }
 
-export const isError = (err: unknown): err is Error =>
-  err instanceof Error
+export const isError = (err: unknown): err is Error => {
+  // TODO: clean if Error.isError() is Baseline
+  // FUCK SAFARI: it ships Error.isError(), but returns false for DOMException.
+  // https://caniuse.com/mdn-javascript_builtins_error_iserror
+  if ('isError' in Error && Error.isError(new DOMException()))
+    return Error.isError(err)
+
+  if (err === null || (typeof err !== 'object' && typeof err !== 'function'))
+    return false
+
+  if (err instanceof Error)
+    return true
+
+  const tag = Object.prototype.toString.call(err)
+  return tag === '[object DOMException]' || tag === '[object Error]'
+}
 
 export const isErrorLike = (err: unknown): err is ErrorLike => {
   if (isError(err))
     return true
 
-  if (err == null || typeof err !== 'object')
+  if (err == null || (typeof err !== 'object' && typeof err !== 'function'))
     return false
 
   return 'message' in err
