@@ -9,7 +9,7 @@ const getTypeName = (value: unknown): string => {
     return value?.constructor?.name ?? 'object'
 }
 
-export const validateBinaryLike = (source: unknown): Uint8Array => {
+const validateBinaryLike = (source: unknown): Uint8Array => {
   if (typeof source === 'string')
     return new TextEncoder().encode(source)
   else if (source instanceof Uint8Array)
