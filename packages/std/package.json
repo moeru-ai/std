@@ -17,6 +17,7 @@
     ".": "./src/index.ts",
     "./async-iterator": "./src/async-iterator/index.ts",
     "./base64": "./src/base64/index.ts",
+    "./defer": "./src/defer/index.ts",
     "./error": "./src/error/index.ts",
     "./merge": "./src/merge/index.ts",
     "./set-interval": "./src/set-interval/index.ts",
@@ -41,6 +42,10 @@
       "./base64": {
         "types": "./dist/base64/index.d.ts",
         "default": "./dist/base64/index.js"
+      },
+      "./defer": {
+        "types": "./dist/defer/index.d.ts",
+        "default": "./dist/defer/index.js"
       },
       "./error": {
         "types": "./dist/error/index.d.ts",
