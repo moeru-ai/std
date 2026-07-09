@@ -9,6 +9,7 @@ import {
   isErrorEq,
   isErrorLike,
   isErrorTypeEq,
+  toError,
 } from '../src/error'
 
 const nonObjectErrorLikeTestCases = [
@@ -144,14 +145,17 @@ describe('errorMessageFrom', () => {
     expect(result).toBe('Custom error')
   })
 
-  it('should return undefined for falsy isErrorLike values', () => {
+  it('should return undefined for nullish values', () => {
     expect(errorMessageFrom(undefined)).toBeUndefined()
     expect(errorMessageFrom(null)).toBeUndefined()
+  })
+
+  it('should return stringified values for non ErrorLike values', () => {
     nonObjectErrorLikeTestCases.forEach((input) => {
-      expect(errorMessageFrom(input)).toBeUndefined()
+      expect(errorMessageFrom(input)).toBe(String(input))
     })
     nonErrorLikeTestCases.forEach((input) => {
-      expect(errorMessageFrom(input)).toBeUndefined()
+      expect(errorMessageFrom(input)).toBe(String(input))
     })
   })
 })
@@ -266,5 +270,46 @@ describe('isErrorTypeEq', () => {
       expect(isErrorTypeEq(input, new Error('Error occurred'))).toBe(false)
       expect(isErrorTypeEq(new Error('Error occurred'), input)).toBe(false)
     })
+  })
+})
+
+describe('toError', () => {
+  it('should return the same Error instance', () => {
+    const error = new Error('Test error')
+    const result = toError(error)
+
+    expect(result).toBe(error)
+  })
+
+  it('should convert ErrorLike values to Error', () => {
+    const cause = new Error('Cause error')
+    const stack = 'CustomError: Custom error\n    at test'
+    const result = toError({
+      cause,
+      message: 'Custom error',
+      name: 'CustomError',
+      stack,
+    })
+
+    expect(result).toBeInstanceOf(Error)
+    expect(result.name).toBe('CustomError')
+    expect(result.message).toBe('Custom error')
+    expect(result.cause).toBe(cause)
+    expect(result.stack).toBe(stack)
+  })
+
+  it('should convert non ErrorLike values to Error with the original value as cause', () => {
+    const cause = { code: 'TEST_ERROR' }
+    const result = toError(cause)
+
+    expect(result).toBeInstanceOf(Error)
+    expect(result.name).toBe('Error')
+    expect(result.message).toBe(String(cause))
+    expect(result.cause).toBe(cause)
+  })
+
+  it('should use Unknown error for nullish values', () => {
+    expect(toError(undefined).message).toBe('Unknown error')
+    expect(toError(null).message).toBe('Unknown error')
   })
 })
